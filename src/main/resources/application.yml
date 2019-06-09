@@ -1,0 +1,47 @@
+server:
+  port: 8080   #设置默认端口
+
+spring:
+  mvc:
+    servlet:
+      load-on-startup: 1             #为 1 表示Tomcat一启动就加载spring配置文件
+  datasource:                        #配置数据源mysql
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/myblog?characterEncoding=utf-8&serverTimezone=GMT%2B8  #最新的jdbc驱动需要设置时区，否则报错！
+    username: root
+    password: root
+    type: com.alibaba.druid.pool.DruidDataSource
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    #   配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+    filters: stat,wall,log4j
+    maxPoolPreparedStatementPerConnectionSize: 20
+    useGlobalDataSourceStat: true
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+
+
+  thymeleaf:                         #设置thymeleaf cache:false -> 不开启缓存    mode: HTML5 -> 默认模板为html5  encoding: UTF-8 设置编码
+    cache: false
+    mode: HTML
+    encoding: UTF-8
+
+logging:
+  level:
+    com.itlike: debug  #设置开发时,日志级别为debug,当完项后改为info,一般用info方便记录打印的日志
+  path: "D:/MyBlogLogFile/log"
+
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml  #mybatis的xml文件映射配置
+  type-aliases-package: cn.cggeeker.pojo #为了避免xml文件中全限定名带来的繁琐写法，这里为pojo类路径配置别名
+  configuration:
+    map-underscore-to-camel-case: true #true：开启驼峰命名识别，false:不开启
+
