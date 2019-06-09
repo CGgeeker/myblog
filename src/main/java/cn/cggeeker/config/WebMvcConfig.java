@@ -2,6 +2,7 @@ package cn.cggeeker.config;
 
 import cn.cggeeker.interceptor.RequestInterceptor;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -21,7 +22,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {  //设置默认首页
-        registry.addViewController("/").setViewName("login");
-        registry.addViewController("/index.html").setViewName("login");
+
+        registry.addViewController( "/" ).setViewName("forward:/login.html");
+
     }
 }

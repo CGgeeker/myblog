@@ -20,7 +20,7 @@ public class RequestInterceptor implements HandlerInterceptor {
 
 
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        log.debug("RequestInterceptor----------preHandle");
+        log.debug("RequestInterceptor----------preHandle拦 - 截 - 器 - 处 - 理 - 中........");
 
         return true;
     }

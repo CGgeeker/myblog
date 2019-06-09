@@ -23,11 +23,12 @@ import java.util.Map;
  * @version:1.0
  */
 /*@RestController*/
-@Slf4j
 @Controller
+@Slf4j
 public class HeroController {
     @Autowired
     private HeroService heroService;
+
     @GetMapping("/test")
     @ResponseBody
     public  Map<String,Object> hello(Model model){
@@ -58,9 +59,10 @@ public class HeroController {
         hero.setId(1);
         hero.setUsername("CGgeeker");
         hero.setPhone("110");
+
         model.addAttribute("hero",hero);
         model.addAttribute("heroList",allHeroList);
 
-        return "myhello";
+        return "static/login";
     }
 }

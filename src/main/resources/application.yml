@@ -3,6 +3,11 @@ server:
 
 spring:
   mvc:
+#    view:
+#      suffix: .html
+#      static-path-pattern: /**
+#    resources:
+#        static-locations: classpath:/templates/,classpath:/static/
     servlet:
       load-on-startup: 1             #为 1 表示Tomcat一启动就加载spring配置文件
   datasource:                        #配置数据源mysql
@@ -36,7 +41,7 @@ spring:
 
 logging:
   level:
-    com.itlike: debug  #设置开发时,日志级别为debug,当完项后改为info,一般用info方便记录打印的日志
+    cn.cggeekerop: debug  #设置开发时,日志级别为debug,当完项后改为info,一般用info方便记录打印的日志
   path: "D:/MyBlogLogFile/log"
 
 mybatis:
