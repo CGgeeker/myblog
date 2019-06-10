@@ -25,6 +25,7 @@ import java.util.Map;
 /*@RestController*/
 @Controller
 @Slf4j
+@RequestMapping("/hero")
 public class HeroController {
     @Autowired
     private HeroService heroService;
