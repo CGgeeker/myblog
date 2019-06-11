@@ -65,11 +65,25 @@ public class UserContreller {
                 resultJson.setStatus(501);
                 resultJson.setMessage("邀请码错误，注册失败！");
             }
-
         }
         else{
             resultJson.setStatus(500);
             resultJson.setMessage("用户名已存在，换一个吧！");
+        }
+        return resultJson;
+    }
+
+    @PostMapping("/modifyUserPassword")
+    public ResultJson modifyUserPassword(User user){
+        ResultJson resultJson = new ResultJson();
+        int affectRow = userService.modifyUserPassword(user);
+        if(affectRow>0){
+            resultJson.setStatus(200);
+            resultJson.setMessage("重置密码成功！");
+        }
+        else {
+            resultJson.setStatus(500);
+            resultJson.setMessage("用户名不存在或邀请码错误！");
         }
         return resultJson;
     }

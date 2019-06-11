@@ -18,5 +18,6 @@ public interface UserMapper extends Mapper<User> {
     public User userLoginValidate(@Param(value = "userName")String userName,@Param(value = "passWord")String passWord); //用户登录验证
     public int findUserByName(String userName); //验证用户名是否存在
     public int insertUser(User user); //插入用户数据
-    public InviteCode findInviteCodeByName(String inviteCode);
+    public InviteCode findInviteCodeByName(String inviteCode); //用户注册时查找邀请码是否正确（存在）
+    public int modifyUserPassword(User user);//用户重置密码
 }

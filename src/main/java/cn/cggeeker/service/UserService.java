@@ -14,4 +14,5 @@ public interface UserService {
     public int findUserByName(String userName);
     public int insertUser(User user);
     public InviteCode findInviteCodeByName(String inviteCode);
+    public int modifyUserPassword(User user);
 }

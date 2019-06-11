@@ -32,4 +32,10 @@
         where invitecode = #{inviteCode,jdbcType=VARCHAR}
     </select>
 
+    <update id="modifyUserPassword" parameterType="User">
+        update user_tb
+        set password = #{passWord,jdbcType=VARCHAR}
+        where username = #{userName,jdbcType=VARCHAR} and invitecode = #{inviteCode,jdbcType=VARCHAR}
+    </update>
+
 </mapper>

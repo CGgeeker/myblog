@@ -37,4 +37,9 @@ public class UserServiceImpl implements UserService {
     public InviteCode findInviteCodeByName(String inviteCode) {
         return userMapper.findInviteCodeByName(inviteCode);
     }
+
+    @Override
+    public int modifyUserPassword(User user) {
+        return userMapper.modifyUserPassword(user);
+    }
 }
