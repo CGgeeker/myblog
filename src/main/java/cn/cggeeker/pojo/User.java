@@ -18,7 +18,7 @@ import java.sql.Timestamp;
 public class User {
     @Id  //指定主键
     @KeySql(useGeneratedKeys = true)
-    private int user_id;
+    private int userId;    //实体类最好不要写成user_id （加下划线）原因：不能识别此种映射方式返回 0 / null！
 
     private String userName;
 
