@@ -1,5 +1,12 @@
 server:
   port: 8080   #设置默认端口
+  tomcat:
+    uri-encoding: UTF-8  #配置tomcat编码为UTF-8
+    max-connections: 1000 #设置最大线程数
+  servlet:                             #springboot2设置session过期时长的方式
+    session:
+      timeout: 1680   #设置session存活时长为28min(28 * 60 = 1680 s)
+
 
 spring:
   mvc:
@@ -7,7 +14,7 @@ spring:
 #      suffix: .html
 #      static-path-pattern: /**
 #    resources:
-#        static-locations: classpath:/templates/,classpath:/static/
+#        static-locations: classpath:/static/
     servlet:
       load-on-startup: 1             #为 1 表示Tomcat一启动就加载spring配置文件
   datasource:                        #配置数据源mysql
