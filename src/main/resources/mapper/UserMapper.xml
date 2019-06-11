@@ -13,6 +13,7 @@
     <select id="userLoginValidate" resultType="User">
 
         select <include refid="Base_Column_List"/>
-        from user_tb where username = #{userName,jdbcType=VARCHAR} and password = #{passWord,jdbcType=VARCHAR};
+        from user_tb
+        where username = #{userName,jdbcType=VARCHAR} and password = #{passWord,jdbcType=VARCHAR};
     </select>
 </mapper>
