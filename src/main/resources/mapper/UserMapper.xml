@@ -11,9 +11,25 @@
     <sql id="Base_Column_List">user_id,username,password,invitecode,registertime</sql>
 
     <select id="userLoginValidate" resultType="User">
-
         select <include refid="Base_Column_List"/>
         from user_tb
-        where username = #{userName,jdbcType=VARCHAR} and password = #{passWord,jdbcType=VARCHAR};
+        where username = #{userName,jdbcType=VARCHAR} and password = #{passWord,jdbcType=VARCHAR}
     </select>
+
+    <select id="findUserByName" parameterType="java.lang.String" resultType="int">
+        select count(*) from user_tb where username = #{userName,jdbcType=VARCHAR}
+    </select>
+
+    <insert id="insertUser" parameterType="User">
+        insert into user_tb (username,password,invitecode,registertime)
+         values(#{userName,jdbcType=VARCHAR},#{passWord,jdbcType=VARCHAR},
+         #{inviteCode,jdbcType=VARCHAR},#{registerTime,jdbcType=TIMESTAMP})
+    </insert>
+
+    <select id="findInviteCodeByName" parameterType="java.lang.String" resultType="InviteCode">
+        select *
+        from invitecode_tb
+        where invitecode = #{inviteCode,jdbcType=VARCHAR}
+    </select>
+
 </mapper>

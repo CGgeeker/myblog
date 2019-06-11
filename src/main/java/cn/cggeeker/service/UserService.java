@@ -1,5 +1,6 @@
 package cn.cggeeker.service;
 
+import cn.cggeeker.pojo.InviteCode;
 import cn.cggeeker.pojo.User;
 
 /**
@@ -10,4 +11,7 @@ import cn.cggeeker.pojo.User;
  */
 public interface UserService {
     public User userLoginValidate(String userName,String passWord);
+    public int findUserByName(String userName);
+    public int insertUser(User user);
+    public InviteCode findInviteCodeByName(String inviteCode);
 }

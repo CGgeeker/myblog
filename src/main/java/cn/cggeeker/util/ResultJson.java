@@ -16,15 +16,15 @@ public class ResultJson {
     //响应业务状态
     private Integer status; //规定200：请求成功 -1:请求失败 500：程序异常
     //响应消息
-    private String msg;  //返回后端的消息给前台
+    private String message;  //返回后端的消息给前台
     //响应的数据
     private Object data;  //返回后端数据给前台
 
     public ResultJson(){}
 
-    public ResultJson(Integer status, String msg, Object data) {
+    public ResultJson(Integer status, String message, Object data) {
         this.status = status;
-        this.msg = msg;
+        this.message = message;
         this.data = data;
     }
 
@@ -40,12 +40,12 @@ public class ResultJson {
         this.status = status;
     }
 
-    public String getMsg() {
-        return msg;
+    public String getMessage() {
+        return message;
     }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public Object getData() {
