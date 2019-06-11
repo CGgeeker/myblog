@@ -57,6 +57,14 @@
             <version>1.1.6</version>
         </dependency>
 
+        <!--fastjson数据配置start-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.29</version>
+        </dependency>
+        <!--fastjson数据配置 end-->
+
 
         <!--mysql数据库驱动依赖-->
         <dependency>

@@ -142,7 +142,43 @@
 			return false;
 		}else{//登录
 			//调用后台登录验证的方法
-			alert('登录成功');
+			var userName = $('#login-username').val();
+			var passWord = $('#login-password').val();
+			$.ajax({
+				type : "GET", //提交方式
+				url : "/user/userLoginValidate",//路径
+				data : {
+					"userName":userName,
+					"passWord":passWord
+				},//数据，这里使用的是Json格式进行传输
+				dataType: "json",
+				// contentType: "application/json;charset:utf-8",
+				success : function(result) {//返回数据根据结果进行相应的处理
+					if(result.status==200){
+						alert('登录成功');
+						window.location.href = 'index.html';  // ajax控制跳转页面
+					}else if(result.status==500){
+						$.pt({
+							target: $("#login-password"),
+							position: 'r',
+							align: 't',
+							width: 'auto',
+							height: 'auto',
+							content:"密码错误"
+						});
+						flag = true;
+					}
+
+					// window.location.href = 'pages/loginsuccess.html'; ajax控制跳转页面
+				},
+				fail:function () {
+					console.log("失败");
+				},
+				error:function () {
+					console.log("错误");
+				}
+			});
+
 			return false;
 		}
 	}
