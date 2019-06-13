@@ -21,7 +21,11 @@ public class RequestInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         log.debug("RequestInterceptor----------preHandle拦 - 截 - 器 - 处 - 理 - 中........");
         //首页路径以及登录放行
-        if ("/index".equals(request.getRequestURI()) || "/login.html".equals(request.getRequestURI())) {
+        if ("/index.html".equals(request.getRequestURI()) || "/login.html".equals(request.getRequestURI())) {
+            return true;
+        }
+        String XRequested =request.getHeader("X-Requested-With");
+        if("XMLHttpRequest".equals(XRequested)){
             return true;
         }
         //重定向

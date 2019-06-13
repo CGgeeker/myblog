@@ -7,11 +7,15 @@ import cn.cggeeker.util.CurrentTime;
 import cn.cggeeker.util.ResultJson;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpRequest;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.sql.Timestamp;
 
 /**
@@ -20,14 +24,16 @@ import java.sql.Timestamp;
  * @Description:cn.cggeeker.controller
  * @version:1.0
  */
-@RestController
+@Controller
 @Slf4j
 @RequestMapping("/user")
 public class UserContreller {
     @Autowired
     private UserService userService;
 
+
     @GetMapping("/userLoginValidate")  //用户登录验证
+    @ResponseBody
     public ResultJson userLoginValidate(String userName,String passWord){
         ResultJson resultJson = new ResultJson();
         User user = userService.userLoginValidate(userName,passWord);
@@ -43,6 +49,7 @@ public class UserContreller {
     }
 
     @PostMapping("/insertUser")  //用户注册
+    @ResponseBody
     public ResultJson insertUser(User user){
         CurrentTime currentTime = new CurrentTime();
         ResultJson resultJson = new ResultJson();
@@ -73,7 +80,9 @@ public class UserContreller {
         return resultJson;
     }
 
+
     @PostMapping("/modifyUserPassword")
+    @ResponseBody
     public ResultJson modifyUserPassword(User user){
         ResultJson resultJson = new ResultJson();
         int affectRow = userService.modifyUserPassword(user);
@@ -86,6 +95,12 @@ public class UserContreller {
             resultJson.setMessage("用户名不存在或邀请码错误！");
         }
         return resultJson;
+    }
+
+    @RequestMapping("/test1")
+    public void test1(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+           request.getRequestDispatcher("/index.html").forward(request, response);
+        /*response.sendRedirect("/index.html");*/
     }
 
 
