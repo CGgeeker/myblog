@@ -160,7 +160,7 @@
 						layer.msg("登录成功！",{time:2*1000});  //2秒后layui提示框消失
 						window.location.href = '/index.html';  // ajax控制跳转页面
 					}else if(result.status==500){
-						$('#login-username').val('');
+						/*$('#login-username').val('');*/
 						$('#login-password').val('');
 						layer.alert('用户名或密码错误！', {
 							icon: 5,

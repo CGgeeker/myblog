@@ -48,7 +48,7 @@ spring:
 
 logging:
   level:
-    cn.cggeekerop: debug  #设置开发时,日志级别为debug,当完项后改为info,一般用info方便记录打印的日志
+    cn.cggeeker: debug  #设置开发时,日志级别为debug,当完项后改为info,一般用info方便记录打印的日志
   path: "D:/MyBlogLogFile/log"
 
 mybatis:

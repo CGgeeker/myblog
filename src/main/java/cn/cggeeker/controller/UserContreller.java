@@ -34,13 +34,18 @@ public class UserContreller {
 
     @GetMapping("/userLoginValidate")  //用户登录验证
     @ResponseBody
-    public ResultJson userLoginValidate(String userName,String passWord){
+    public ResultJson userLoginValidate(String userName,String passWord,HttpServletRequest request,HttpServletResponse response){
         ResultJson resultJson = new ResultJson();
         User user = userService.userLoginValidate(userName,passWord);
         if(user!=null){
             resultJson.setStatus(200);
             resultJson.setMessage("登录成功！");
             resultJson.setData(user);
+            //登录成功后将用户名和userid存入session中
+            String loginname = user.getUserName();
+            int loginid = user.getUserId();
+            request.getSession().setAttribute("userObject",user);
+
         }else {
             resultJson.setStatus(500);
             resultJson.setMessage("用户名或密码错误！");
@@ -102,6 +107,26 @@ public class UserContreller {
            request.getRequestDispatcher("/index.html").forward(request, response);
         /*response.sendRedirect("/index.html");*/
     }
+
+    @GetMapping("/getLoginUserSession")
+    @ResponseBody
+    public ResultJson getLoginUserSession(HttpServletRequest request , HttpServletResponse response){
+        ResultJson resultJson = new ResultJson();
+        User user = (User)request.getSession().getAttribute("userObject");
+        log.debug(":::::::::::::::::::Session::::::::::::::" + user);
+        if(user!=null){
+            resultJson.setStatus(200);
+            resultJson.setMessage("成功获取当前用户的session信息！");
+            resultJson.setData(user);
+        }
+        else{
+            resultJson.setStatus(500);
+            resultJson.setMessage("获取当前用户session失败");
+        }
+        return resultJson;
+    }
+
+
 
 
 
