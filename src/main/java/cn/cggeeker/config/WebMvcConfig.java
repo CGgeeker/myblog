@@ -18,7 +18,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) { //重写拦截器方法，设置拦截路径
         registry.addInterceptor(new RequestInterceptor()).addPathPatterns("/**") //注意这里有坑，路径不能写成 / 必须写成 /**
-                .excludePathPatterns("/css/**","/dist/**","/images/**","/img/**","/imgver/**","/js/**","/layui/**","/plugin/**");  //静态资源放行
+                .excludePathPatterns("/css/**","/dist/**","/dragblockvalidate/**","/images/**","/img/**",
+                        "/imgvervalidate/**","/js/**","/layui/**","/plugin/**");  //静态资源放行
     }
 
     @Override
