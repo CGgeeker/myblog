@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Title</title>
+<link type="text/css" rel="stylesheet" href="imgver/css/style.css">
+<script src="imgver/js/jquery-1.10.2.js"></script>
+<script src="imgver/js/img_ver.js"></script>
+<style>
+        .bxs-row {
+            margin-bottom:12px;
+        }
+        .logo-box {
+            width:404px;
+            margin:120px auto;
+            border:1px solid #e5e5e5;
+            border-radius:4px;
+            box-shadow:0 4px 18px rgba(0,0,0,0.2);
+            position:relative;
+            overflow:hidden;
+            height:360px;
+        }
+        .validatelogin {
+            position:absolute;
+            width:320px;left:0;
+            top:0;
+            padding: 42px 42px 36px;
+            transition:all 0.8s;
+        }
+        .validatebtn {
+            height: 44px;
+            width: 100%;
+            padding: 0 10px;
+            border: 1px solid #9da3a6;
+            background: #fff;
+            text-overflow: ellipsis;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            -khtml-border-radius: 4px;
+            border-radius: 4px;
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            box-shadow: none;
+            color: #000;
+            font-size: 1em;
+            font-family: Helvetica,Arial,sans-serif;
+            font-weight: 400;
+            direction: ltr;
+            font-size:13px;
+        }
+        .validatesubmit {
+            background-color: #0070ba;
+            color:#fff;
+            border:1px solid #0070ba;
+        }
+        .validatesubmit:hover {
+            background-color:#005ea6;
+        }
+        .verBox {
+            position:absolute;
+            width:100%;
+            text-align:center;
+            left:404px;
+            top:0;
+            opacity:0;
+            transition:all 0.8s;
+            padding-top:55px;
+        }
+     
+    </style>
+</head>
+<body>
+<div class="logo-box">
+<div class="validatelogin" style="">
+<div class="bxs-row">
+<input type="button" class="validatesubmit validatebtn" value="登录">
+</div>
+</div>
+<div class="verBox">
+<div id="imgVer" style="display:inline-block;"></div>
+</div>
+</div>
+<script>
+        imgVer({
+            el:'$("#imgVer")',
+            width:'260',
+            height:'116',
+            img:[
+                'imgver/images/ver.png',
+                'imgver/images/ver-1.png',
+                'imgver/images/ver-2.png',
+                'imgver/images/ver-3.png'
+            ],
+            success:function () {
+                //alert('执行登录函数');
+                $(".validatelogin").css({
+                    "left":"0",
+                    "opacity":"1"
+                });
+                $(".verBox").css({
+                    "left":"404px",
+                    "opacity":"0"
+                });
+          
+            },
+            error:function () {
+                //alert('错误什么都不执行')
+            }
+        });
+        $(".validatesubmit").on('click',function () {
+                $(".validatelogin").css({
+                    "left":"-404px",
+                    "opacity":"0"
+                });
+                $(".verBox").css({
+                    "left":"0",
+                    "opacity":"1"
+                })
+            
+        })
+    </script>
+</body>
+</html>
