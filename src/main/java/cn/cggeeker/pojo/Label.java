@@ -18,7 +18,7 @@ public class Label {
 
     @Id
     @KeySql(useGeneratedKeys = true)
-    private int label_id;
+    private int labelId;
 
-    private String labelName;
+    private String labelName;  //用驼峰式命名后，如果用通用mapper里的方法，会出问题：会直接将labelName转化成label_name,导致属性与字段无法映射
 }

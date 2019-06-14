@@ -22,7 +22,7 @@ public class HeroServiceImpl implements HeroService {
 
     @Override
     public List<Hero> getAllHero() {
-        System.out.println(":::service:::"+heroMapper.selectAll());
+        System.out.println(":::!!!!!!!!!!!!!!!!service::!!!!!!!!!!!!!!!!!!!:"+heroMapper.selectAll());
         return heroMapper.getAllHero();
     }
 }
