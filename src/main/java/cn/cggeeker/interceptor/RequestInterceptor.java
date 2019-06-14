@@ -33,12 +33,12 @@ public class RequestInterceptor implements HandlerInterceptor {
         }
 
         //重定向
-    /*    Object object = request.getSession().getAttribute("userObject");
+        Object object = request.getSession().getAttribute("userObject");
         if (null == object) {
             log.debug("RequestInterceptor----------preHandle拦 - 截 - 器 - 处 - 理 - 中......2222222222..");
             response.sendRedirect("/login.html");
             return false;
-        }*/
+        }
         return true;
 
     }

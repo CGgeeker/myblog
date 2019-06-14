@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.cggeeker.mapper.SiteTipMapper">
+    <resultMap id="BaseResultMap" type="SiteTip">  <!--springboot中实体类自动映射表字段(也就是：@Table(name = "xxx"))，无需这样配置了-->
+        <id column="sitetip_id" jdbcType="INTEGER" property="sitetipId"/>
+        <result column="sitetipname" jdbcType="VARCHAR" property="sitetipName"/>
+        <result column="sitetipcontent" jdbcType="VARCHAR" property="sitetipContent"/>
+    </resultMap>
+    <sql id="Base_Column_List">sitetip_id,sitetipname,sitetipcontent</sql>
+
+    <select id="findAllSiteTip" resultType="SiteTip">
+        select <include refid="Base_Column_List"/>
+        from sitetip_tb
+    </select>
+
+</mapper>

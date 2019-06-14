@@ -234,9 +234,9 @@
 
 						<div class="panel panel-default sitetip">
 							<a href="/article_detail.html">
-								<strong>站点公告</strong>
-								<h3 class="title">嫁人就嫁程序员</h3>
-								<p class="overView">个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中。。。</p>
+								<strong class="sitetip-sitetip">站点公告</strong>
+								<h3 class="title sitetip-name"></h3>
+								<p class="overView sitetip-content"></p>
 							</a>
 						</div>
 
@@ -246,19 +246,11 @@
 							</div>
 							<div class="panel-body">
 								<div class="labelList">
-									<a class="label label-default">java</a>
-									<a class="label label-default">tomcat负载均衡</a>
+								<!--<a class="label label-default">tomcat负载均衡</a>
 									<a class="label label-default">panel</a>
-									<a class="label label-default" href="/tag/jQuery">jQuery</a>
-									<a class="label label-default" href="/tag/jQuery选择器">jQuery选择器</a>
-									<a class="label label-default" href="/tag/linux">linux</a>
+									<a class="label label-default" href="https://blog.csdn.net/qq_40436854">linux</a>
 									<a class="label label-default" href="/tag/Nginx">Nginx</a>
-									<a class="label label-default" href="/tag/linux文件类型">linux文件类型</a>
-									<a class="label label-default" href="/tag/chrome请求两次">chrome</a>
-									<a class="label label-default" href="/tag/Redis">Redis</a>
-									<a class="label label-default" href="/tag/spring">spring</a>
-									<a class="label label-default" href="/tag/tomcat">tomcat</a>
-									<a class="label label-default" href="/tag/SyntaxHighlighter">SyntaxHighlighter</a>
+									<a class="label label-default" href="/tag/Redis">Redis</a>-->
 								</div>
 							</div>
 						</div>
@@ -377,7 +369,7 @@
 				dataType : "json",
 				success : function (result) {
 					console.log(result);
-					alert("session数据："+result.data)
+					/*alert("session数据："+result.data)*/
 					if(result.status==500){
 						window.location.href = '/login.html';  // ajax控制跳转页面
 					}
@@ -390,6 +382,87 @@
 				}
 
 			});
+		});
+
+		$(function () {
+
+				$.ajax({
+					type : "GET",
+					url : "/label/findAllLabel",
+					data : {},
+					dataType : "json",
+					success : function (result) {
+							if(result.status == 200){
+								/*var listlength = result.data.length;*/
+								var jsonarr = result.data;
+								for(var i in jsonarr){
+									$('.labelList').append('<a class="label label-default" href="https://blog.csdn.net/qq_40436854">'+jsonarr[i].labelName+'</a>');
+								}
+							}else{}
+					},
+					fail : function () {
+						console.log("获取标签失败！");
+					},
+					error : function () {
+						console.log("获取标签错误！");
+					}
+
+				});
+
+
+		});
+		$(function () {
+
+
+			$.ajax({
+				type : "GET",
+				url : "/sitetip/findAllSiteTip",
+				data : {},
+				dataType : "json",
+				success : function (result) {
+					if(result.status == 200){
+
+						var jsonarr = result.data;
+
+						//初始化站点公告样式
+
+						$('.sitetip-name').text(jsonarr[0].sitetipName);
+						$('.sitetip-content').text(jsonarr[0].sitetipContent);
+						$('.sitetip-sitetip').css({"background-color":"#8EC55F"});
+						$('.sitetip-name').css({"color":"#8EC55F"});
+
+						//为站点公告设置“滚动定时器” 并设置样式,
+						var t1 = window.setInterval(function(){
+							$('.sitetip-sitetip').css({"background-color":"#8EC55F"});
+							$('.sitetip-name').css({"color":"#8EC55F"});
+							$('.sitetip-name').text(jsonarr[0].sitetipName);
+							$('.sitetip-content').text(jsonarr[0].sitetipContent);
+							console.log("定时器111");
+						},5000);
+
+						var t2 = window.setInterval(function(){
+							$('.sitetip-sitetip').css({"background-color":"#836FFF"});
+							$('.sitetip-name').css({"color":"#836FFF"});
+							$('.sitetip-name').text(jsonarr[1].sitetipName);
+							$('.sitetip-content').text(jsonarr[1].sitetipContent);
+							console.log("定时器222");
+						},10000);
+
+						/*window.clearInterval(t1); //去掉定时器的方法*/
+
+
+
+					}else{}
+				},
+				fail : function () {
+					console.log("失败");
+				},
+				error : function () {
+					console.log("错误");
+				}
+
+			});
+
 		});
 
 	</script>
