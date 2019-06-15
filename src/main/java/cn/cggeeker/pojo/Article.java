@@ -18,7 +18,7 @@ import java.sql.Timestamp;
 public class Article {
     @Id //指定主键
     @KeySql(useGeneratedKeys = true)
-    private int article_id;
+    private int articleId;
 
     private String title;
 
@@ -29,5 +29,7 @@ public class Article {
     private int readingNum;
 
     private Timestamp publishTime;
+
+    private String articleImg;
 
 }

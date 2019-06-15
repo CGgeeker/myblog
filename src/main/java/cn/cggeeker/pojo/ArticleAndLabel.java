@@ -17,7 +17,7 @@ import javax.persistence.Table;
 public class ArticleAndLabel {
     @Id
     @KeySql(useGeneratedKeys = true)
-    private int al_id;
+    private int alId;
 
     private String labelName;
 

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.cggeeker.mapper.ArticleAndLabelMapper">
+    <resultMap id="BaseResultMap" type="ArticleAndLabel">  <!--springboot中实体类自动映射表字段(也就是：@Table(name = "xxx"))，无需这样配置了-->
+        <id column="al_id" jdbcType="INTEGER" property="alId"/>
+        <result column="labelname" jdbcType="VARCHAR" property="labelName"/>
+        <result column="articleid" jdbcType="INTEGER" property="articleId"/>
+    </resultMap>
+    <sql id="Base_Column_List">al_id,labelname,articleid</sql>
+
+    <select id="findArticleAndLabelById" parameterType="java.lang.Integer" resultType="ArticleAndLabel">
+        select <include refid="Base_Column_List"/>
+        from articleandlabel_tb
+        where articleid = #{articleId,jdbcType=INTEGER}
+    </select>
+
+</mapper>

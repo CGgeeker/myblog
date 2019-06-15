@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.cggeeker.mapper.ArticleMapper">
+    <resultMap id="BaseResultMap" type="Article">  <!--springboot中实体类自动映射表字段(也就是：@Table(name = "xxx"))，无需这样配置了-->
+        <id column="article_id" jdbcType="INTEGER" property="labelId"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="content" jdbcType="VARCHAR" property="content"/>
+        <result column="author" jdbcType="VARCHAR" property="author"/>
+        <result column="readingnum" jdbcType="INTEGER" property="readingNum"/>
+        <result column="publishtime" jdbcType="TIMESTAMP" property="publishTime"/>
+        <result column="articleimg" jdbcType="VARCHAR" property="articleImg"/>
+    </resultMap>
+    <sql id="Base_Column_List">article_id,title,content,author,readingnum,publishtime,articleimg</sql>
+
+    <select id="findAllArticle" parameterType="java.lang.Integer" resultType="Article">
+        select <include refid="Base_Column_List"/>
+        from article_tb limit #{startIndex,jdbcType=INTEGER} , #{endIndex,jdbcType=INTEGER};
+    </select>
+
+</mapper>
