@@ -23,7 +23,7 @@ public class ArticleAndLabelController {
     ArticleAndLabelService articleAndLabelService;
 
     @RequestMapping("/findArticleAndLabelById")
-    public ResultJson findArticleAndLabelById(Integer articleId){
+    public ResultJson findArticleAndLabelById(int articleId){
 
         System.out.println("??????????????????????????-----: labelId:"+articleId);
 

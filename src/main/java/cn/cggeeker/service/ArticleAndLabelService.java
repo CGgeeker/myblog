@@ -11,6 +11,6 @@ import java.util.List;
  * @version:1.0
  */
 public interface ArticleAndLabelService {
-    public List<ArticleAndLabel> findArticleAndLabelById(Integer articleId);
+    public List<ArticleAndLabel> findArticleAndLabelById(int articleId);
 
 }

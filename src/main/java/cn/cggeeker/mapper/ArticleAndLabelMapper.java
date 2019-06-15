@@ -14,5 +14,5 @@ import java.util.List;
  */
 @Repository
 public interface ArticleAndLabelMapper {
-    public List<ArticleAndLabel> findArticleAndLabelById(Integer articleId);
+    public List<ArticleAndLabel> findArticleAndLabelById(int articleId);
 }

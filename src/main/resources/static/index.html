@@ -396,7 +396,7 @@
 				url : "/article/findAllArticle",
 				data : {
 					"startIndex" : 0,
-					"endIndex" : 5
+					"endIndex" : 4
 				},
 				dataType : "json",
 				success : function (result1) {
@@ -407,22 +407,22 @@
 						var articlearr = result1.data;
 						//jquery动态拼接li标签
 						for(var i in articlearr){
-						$.ajax({
+						/*$.ajax({
 							type : "GET",
 							url : "/articleandlabel/findArticleAndLabelById",
 							data : {
 								"articleId" : parseInt(articlearr[i].articleId)
 							},
 							dataType : "json",
-							contentType: "application/json;charset=utf-8;",
 							success : function (result2) {
 								if(result2.status == 200){
-									var labelstr = '';
+									var labelstr="";
 									var publishTime = layui.util.toDateString(articlearr[i].publishTime, 'yyyy-MM-dd HH:mm:ss')//时间戳->常规时间格式
-
+                                    console.log("{}{}{}{}}{}labelstr : " + labelstr);
 									var articleandlabelarr = result2.data;
 									for(var j in articleandlabelarr){
-										labelstr =+ '<a class="label label-default">'+articleandlabelarr[j].labelName+'</a>';
+										labelstr += '<a class="label label-default">'+articleandlabelarr[j].labelName+'</a>';
+                                        console.log("{}{}{}{}}{}labelstr11 : " + labelstr);
 									}
 
 									$('.contentList').append('<div class="panel panel-default"><div class="panel-body"><div class="contentleft article-firstdiv">'
@@ -445,9 +445,9 @@
 								console.log("error");
 							}
 
-						});
+						});*/
 
-					/*	var publishTime = layui.util.toDateString(articlearr[i].publishTime, 'yyyy-MM-dd HH:mm:ss')//时间戳->常规时间格式
+						var publishTime = layui.util.toDateString(articlearr[i].publishTime, 'yyyy-MM-dd HH:mm:ss')//时间戳->常规时间格式
 
 						$('.contentList').append('<div class="panel panel-default"><div class="panel-body"><div class="contentleft article-firstdiv">'
 						+'<h4><a class="title" href="/article_detail.html">'+articlearr[i].title+'</a></h4>'
@@ -458,7 +458,7 @@
 						+'</span><span class="count"><i class="glyphicon glyphicon-comment"></i>'
 						+"评论:暂无"+'</span><span class="count"><i class="glyphicon glyphicon-time"></i>'+publishTime
 						+'</span></p></div>'+'<div class="contentImage article-seconddiv"><div class="row"><a href="#" class="thumbnail w_thumbnail">'
-						+'<img src="'+articlearr[i].articleImg+'" alt="...">'+'</a></div></div></div></div>');*/
+						+'<img src="'+articlearr[i].articleImg+'" alt="...">'+'</a></div></div></div></div>');
 
 						}
 

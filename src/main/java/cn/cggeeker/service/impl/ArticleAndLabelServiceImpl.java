@@ -20,7 +20,7 @@ public class ArticleAndLabelServiceImpl implements ArticleAndLabelService {
     ArticleAndLabelMapper articleAndLabelMapper;
 
     @Override
-    public List<ArticleAndLabel> findArticleAndLabelById(Integer articleId) {
+    public List<ArticleAndLabel> findArticleAndLabelById(int articleId) {
         return articleAndLabelMapper.findArticleAndLabelById(articleId);
     }
 }
