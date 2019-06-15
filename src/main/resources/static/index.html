@@ -11,6 +11,7 @@
 	<link href="/logo.ico" rel="shortcut icon" />
 	<script src="/plugin/jquery.min.js"></script>
 	<script src="/plugin/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/layui/layui.all.js"></script>
 	<!--<script type="text/javascript" src="plugin/jquery.page.js"></script>-->
 	<!--<script src="js/common.js"></script>-->
 	<!--<script src="js/snowy.js"></script>-->
@@ -233,7 +234,7 @@
 					<div class="col-lg-3 col-md-3 w_main_right">
 
 						<div class="panel panel-default sitetip">
-							<a href="/article_detail.html">
+							<a href="#" class="sitetip-a">
 								<strong class="sitetip-sitetip">站点公告</strong>
 								<h3 class="title sitetip-name"></h3>
 								<p class="overView sitetip-content"></p>
@@ -395,6 +396,7 @@
 							if(result.status == 200){
 								/*var listlength = result.data.length;*/
 								var jsonarr = result.data;
+								//jquery动态拼接li标签
 								for(var i in jsonarr){
 									$('.labelList').append('<a class="label label-default" href="https://blog.csdn.net/qq_40436854">'+jsonarr[i].labelName+'</a>');
 								}
@@ -425,11 +427,14 @@
 						var jsonarr = result.data;
 
 						//初始化站点公告样式
-
-						$('.sitetip-name').text(jsonarr[0].sitetipName);
-						$('.sitetip-content').text(jsonarr[0].sitetipContent);
-						$('.sitetip-sitetip').css({"background-color":"#8EC55F"});
-						$('.sitetip-name').css({"color":"#8EC55F"});
+						$('.sitetip-a').css({"text-decoration":"none"}); //去掉a标签的下划线
+						var t0 = window.setTimeout(function(){
+							$('.sitetip-sitetip').css({"background-color":"#836FFF"});
+							$('.sitetip-name').css({"color":"#836FFF"});
+							$('.sitetip-name').text(jsonarr[1].sitetipName);
+							$('.sitetip-content').text(jsonarr[1].sitetipContent);
+							console.log("定时器000");
+						},100);
 
 						//为站点公告设置“滚动定时器” 并设置样式,
 						var t1 = window.setInterval(function(){
@@ -460,6 +465,15 @@
 				error : function () {
 					console.log("错误");
 				}
+
+			});
+
+			$('.sitetip-a').click(function () {
+
+				layer.alert($('.sitetip-content').text(), {
+					icon: 6,
+					title: $('.sitetip-name').text()
+				});
 
 			});
 
