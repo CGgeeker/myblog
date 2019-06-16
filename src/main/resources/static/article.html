@@ -17,10 +17,12 @@
 <script src="/plugin/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/plugin/jquery.page.js"></script>
 <script src="/js/common.js"></script>
+<script src="/layui/layui.all.js"></script>
+
 <!--<script src="js/snowy.js"></script>-->
 <script type="text/javascript">
 	
-$(function(){
+/*$(function(){
 	$("#page").Page({
 	  totalPages: 7,//分页总数
 	  liNums: 5,//分页的数字按钮数(建议取奇数)
@@ -29,7 +31,7 @@ $(function(){
 			//console.log(page)
 	  }
   });
-})
+})*/
 </script>
 
 <body>
@@ -71,7 +73,7 @@ $(function(){
 					<div class="panel panel-default">
 					  <div class="panel-body contentList">
 					  	
-					  	<div class="panel panel-default w_article_item">
+					  	<!--<div class="panel panel-default w_article_item">
 						  <div class="panel-body">
 						    <div class="row">
 							  <div class="col-xs-6 col-md-3">
@@ -88,101 +90,8 @@ $(function(){
 							  <p class="count_r"><span class="count"><i class="glyphicon glyphicon-user"></i><a href="#">admin</a></span> <span class="count"><i class="glyphicon glyphicon-eye-open"></i>阅读:1003</span><span class="count"><i class="glyphicon glyphicon-comment"></i>评论:2</span><span class="count"><i class="glyphicon glyphicon-time"></i>2017-01-16</span></p>
 							</div>
 						  </div>
-						</div>
-					  	
-					    <div class="panel panel-default w_article_item">
-						  <div class="panel-body">
-						    <div class="row">
-							  <div class="col-xs-6 col-md-3">
-							    <a href="#" class="thumbnail w_thumbnail">
-							      <img src="/img/w.jpg" alt="...">
-							    </a>
-							  </div>
-							  <h4 class="media-heading">
-							  	<a class="title" href="/article_detail.html">使用 Nginx 实现 tomcat、glassfish 等 web 服务器负载均衡</a>
-							  </h4>
-							  <p><a class="label label-default">Nginx</a><a class="label label-default">tomcat负载均衡</a></p>
-							  <p class="w_list_overview overView">web服务器负载均衡简介web服务器负载均衡是指将多台可用单节点服务器组合成web服务器集群，然后通过负载均衡器将客户端请求均匀的转发到不同的单节点web服务器上，从而增加整个web服务器集群的吞吐量</p>
-							  <p class="count_r"><span class="count"><i class="glyphicon glyphicon-user"></i><a href="#">admin</a></span> <span class="count"><i class="glyphicon glyphicon-eye-open"></i>阅读:1003</span><span class="count"><i class="glyphicon glyphicon-comment"></i>评论:2</span><span class="count"><i class="glyphicon glyphicon-time"></i>2017-01-16</span></p>
-							</div>
-						  </div>
-						</div>
-						
-						<div class="panel panel-default w_article_item">
-						  <div class="panel-body">
-						    <div class="row">
-							  <div class="col-xs-6 col-md-3">
-							    <a href="#" class="thumbnail w_thumbnail">
-							      <img src="/img/slider/67zmaej.png" alt="...">
-							    </a>
-							  </div>
-							  <h4 class="media-heading">
-							  	<a class="title" href="/article_detail.html">32位的UUID生成方法总结</a>
-							  </h4>
-							  <p><a class="label label-default">Nginx</a><a class="label label-default">tomcat负载均衡</a></p>
-							  <p class="w_list_overview overView">在学习过程中，我们常常会用到ID，在学习过程中，我们常常会用到ID，那么有哪些常用的 ID 生成方式，你知道吗？通过 java.util.UUID（终态类）生成</p>
-							  <p class="count_r"><span class="count"><i class="glyphicon glyphicon-user"></i><a href="#">admin</a></span> <span class="count"><i class="glyphicon glyphicon-eye-open"></i>阅读:1003</span><span class="count"><i class="glyphicon glyphicon-comment"></i>评论:2</span><span class="count"><i class="glyphicon glyphicon-time"></i>2017-01-16</span></p>
-							</div>
-						  </div>
-						</div>
-						
-						<div class="panel panel-default w_article_item">
-						  <div class="panel-body">
-						  	
-						    <div class="row">
-							  <div class="col-xs-6 col-md-3">
-							    <a href="#" class="thumbnail w_thumbnail">
-							      <img src="/img/slider/Aj6bieY.jpg" alt="...">
-							    </a>
-							  </div>
-							  
-							  <h4 class="media-heading">
-							  	<a class="title" href="/article_detail.html">使用 Nginx 实现 tomcat、glassfish 等 web 服务器负载均衡</a>
-							  </h4>
-							  <p><a class="label label-default">Nginx</a><a class="label label-default">tomcat负载均衡</a></p>
-							  <p class="w_list_overview overView">web服务器负载均衡简介web服务器负载均衡是指将多台可用单节点服务器组合成web服务器集群，然后通过负载均衡器将客户端请求均匀的转发到不同的单节点web服务器上，从而增加整个web服务器集群的吞吐量</p>
-							  <p class="count_r"><span class="count"><i class="glyphicon glyphicon-user"></i><a href="#">admin</a></span> <span class="count"><i class="glyphicon glyphicon-eye-open"></i>阅读:1003</span><span class="count"><i class="glyphicon glyphicon-comment"></i>评论:2</span><span class="count"><i class="glyphicon glyphicon-time"></i>2017-01-16</span></p>
-							</div>
-							
-						  </div>
-						</div>
-						
-						
-						
-						<div class="panel panel-default w_article_item">
-							  <div class="panel-body">
-									<div class="row">
-										<div class="col-xs-6 col-md-3">
-										    <a href="#" class="thumbnail w_thumbnail">
-										      <img src="/img/brain.jpg" alt="...">
-										    </a>
-										  </div>
-										  
-									    <h4  class="media-heading"><a class="title" href="/article_detail.html">排序算法之冒泡排序 － java实现</a></h4>
-									    <p><a class="label label-default">UUID</a><a class="label label-default">java</a></p>
-									    <p class="overView">冒泡排序是非常经典的排序算法，其实现思路非常简单易懂。下面介绍冒泡排序的基本思想、java实现以及时间和空间复杂度等内容。注：以下排序规则为从小到大，待排序数据为int类型。1.冒泡排序基本思想冒泡排序的基本思路是将待排序的数据两两进行比较，如果第一个元素比第二个元素大，那么将第一个元素和第二个元素进行交换。由冒泡排序的...</p>
-									    <p class="count_r"><span class="count"><i class="glyphicon glyphicon-user"></i><a href="#">admin</a></span> <span class="count"><i class="glyphicon glyphicon-eye-open"></i>阅读:666</span><span class="count"><i class="glyphicon glyphicon-comment"></i>评论:18</span><span class="count"><i class="glyphicon glyphicon-time"></i>2016-12-25</span></p>
-									</div>
-							  </div>
-							</div>
-						
-						<div class="panel panel-default w_article_item">
-						  <div class="panel-body">
-						    <div class="row">
-							  <div class="col-xs-6 col-md-3">
-							    <a href="#" class="thumbnail w_thumbnail">
-							      <img src="/img/slider/Aj6bieY.jpg" alt="...">
-							    </a>
-							  </div>
-							  <h4 class="media-heading">
-							  	<a class="title" href="/article_detail.html">使用 Nginx 实现 tomcat、glassfish 等 web 服务器负载均衡</a>
-							  </h4>
-							  <p><a class="label label-default">Nginx</a><a class="label label-default">tomcat负载均衡</a></p>
-							  <p class="w_list_overview overView">web服务器负载均衡简介web服务器负载均衡是指将多台可用单节点服务器组合成web服务器集群，然后通过负载均衡器将客户端请求均匀的转发到不同的单节点web服务器上，从而增加整个web服务器集群的吞吐量</p>
-							  <p class="count_r"><span class="count"><i class="glyphicon glyphicon-user"></i><a href="#">admin</a></span> <span class="count"><i class="glyphicon glyphicon-eye-open"></i>阅读:1003</span><span class="count"><i class="glyphicon glyphicon-comment"></i>评论:2</span><span class="count"><i class="glyphicon glyphicon-time"></i>2017-01-16</span></p>
-							</div>
-						  </div>
-						</div>
+						</div>-->
+
 						
 						
 						<!--<div class="page">
@@ -206,9 +115,9 @@ $(function(){
 						  </ul>
 						</nav>
 						</div>-->
-						<div id="page">
+						<!--<div id="page">
 							
-						</div>
+						</div>-->
 						
 						
 					  </div>
@@ -222,17 +131,8 @@ $(function(){
 					    <h3 class="panel-title">最新发布</h3>
 					  </div>
 					  <div class="panel-body">
-					    	<ul class="list-unstyled sidebar">				
-								<li><a href="/post/04928311">排序算法之冒泡排序 － java实现</a></li>
-								<li><a href="/post/32097759">快速搭建基于二进制日志文件的 mysql 复制</a></li>							
-								<li><a href="/post/09196557">web 服务器负载均衡教程，快速搭建高可用服务器集群</a></li>							
-								<li><a href="/post/20654391">使用 redis 和 spring-session 实现 tomcat、glassfish 等 web 服务器集群 session 共享</a></li>							
-								<li><a href="/post/41501569">使用 Nginx 实现 tomcat、glassfish 等 web 服务器负载均衡</a></li>							
-								<li><a href="/post/89658700">mysql 复制（replication）基础概念和应用场景简介</a></li>							
-								<li><a href="/post/03088922">redis 单节点在 Linux 生产环境的安装和简单配置</a></li>							
-								<li><a href="/post/05203355">使用 jQuery 的 val() 方法来获取以及设置表单元素值</a></li>							
-								<li><a href="/post/03120718">使用 jQuery 的 removeProp() 方法来删除元素的特性（property）</a></li>							
-								<li><a href="/post/37454977">使用 jQuery 的 prop() 方法来获取以及设置元素的特性（property）</a></li>							
+					    	<ul class="list-unstyled sidebar newpublish-ul">
+								<!--<li><a href="/post/04928311">排序算法之冒泡排序 － java实现</a></li>-->
 						</ul>
 					  </div>
 					</div>
@@ -272,5 +172,143 @@ $(function(){
 	</div>
 	<!--snow-->
 	<!--<div class="snow-container"></div>-->
+
+    <script type="text/javascript">
+
+        $(function () {
+
+            <!--获取指定范围内的文章信息的ajax-->
+            $.ajax({
+                type : "GET",
+                url : "/article/findAllArticle",
+                data : {
+                    "startIndex" : 0,
+                    "endIndex" : 6
+                },
+                dataType : "json",
+                success : function (result1) {
+                    console.log(result1);
+
+                    if(result1.status == 200){
+                        /*var listlength = result.data.length;*/
+                        var articlearr = result1.data;
+
+                        //jquery动态拼接li标签
+                        for(let i in articlearr){
+
+                            (function (i) {    //这里采用形如：(function(i){...})(i)的闭包方式解决var声明变量的作用域和js回收机制问题
+                                <!--内套获取文章标签和评论数信息的ajax-->	//这里也可以直接用将var 变为let去声明变量就不需要闭包了！
+                                $.ajax({
+                                    type : "GET",
+                                    url : "/articleandlabel/findArticleAndLabelAndArticleCountById",
+                                    data : {
+                                        "articleId" : parseInt(articlearr[i].articleId)
+                                    },
+                                    dataType : "json",
+                                    success : function (result2) {
+                                        if(result2.status == 200){
+                                            var labelstr="";
+                                            var publishTime = layui.util.toDateString(articlearr[i].publishTime, 'yyyy-MM-dd HH:mm:ss')//时间戳->常规时间格式
+                                            var articleandlabelarr = result2.data.articleAndLabelList;  //获取该文章标签信息的list
+                                            var articleCount = result2.data.articleCount;               //获取该文章的评论总数
+                                            for(let j in articleandlabelarr){
+                                                labelstr += '<a class="label label-default">'+articleandlabelarr[j].labelName+'</a>';
+                                                console.log("{}{}{}{}}{}labelstr11 : " + labelstr);
+                                            }
+
+                                            //动态拼接首页左边最新发布的列表的子元素
+                                            $('.contentList').append('<div class="panel panel-default w_article_item"><div class="panel-body"><div class="row"><div class="col-xs-6 col-md-3">'
+                                                +'<a href="#" class="thumbnail w_thumbnail"><img src="'+ articlearr[i].articleImg +'" alt="..."></a></div>'
+                                                +'<h4 class="media-heading"><a class="title" href="/article_detail.html">'+ articlearr[i].title +'</a></h4>'
+                                                +'<p>'+ labelstr +'</p>'
+                                                +'<p class="w_list_overview overView">'+ articlearr[i].content.substr(0,200) +'</p>'
+                                                +'<p class="count_r"><span class="count"><i class="glyphicon glyphicon-user"></i><a href="#">'+ articlearr[i].author +'</a></span>'
+                                                +'<span class="count"><i class="glyphicon glyphicon-eye-open"></i>阅读:'+ articlearr[i].readingNum +'</span>'
+                                                +'<span class="count"><i class="glyphicon glyphicon-comment"></i>评论:'+ articleCount +'</span>'
+                                                +'<span class="count"><i class="glyphicon glyphicon-time"></i>'+ publishTime +'</span>'
+                                                +'</p></div></div></div>');
+
+
+                                        }else{}
+                                    },
+                                    fail : function () {
+                                        console.log("fail");
+                                    },
+                                    error : function () {
+                                        console.log("error");
+                                    }
+
+                                });
+                            })(i);
+
+                        };
+
+                    }else{}
+                },
+                fail : function () {
+                    console.log("fail!")
+                },
+                error : function () {
+                    console.log("error!")
+                }
+            });
+
+
+
+            <!--获取指定范围内的文章信息(其实只获取文章标题)的ajax-->
+            $.ajax({
+                type: "GET",
+                url: "/article/findAllArticle",
+                data: {
+                    "startIndex": 0,
+                    "endIndex": 10
+                },
+                dataType: "json",
+                success : function (result) {
+                    if(result.status == 200){
+
+                        var articlearr = result.data;
+
+                        //jquery动态拼接li标签
+                        for(let i in articlearr){
+
+                            //动态拼接首页右边的简单的最新发布列表子元素
+                            $('.newpublish-ul').append('<li><a href="/article_detail.html">'+articlearr[i].title+'</a></li>');
+                        }
+
+                    }else{}
+                },
+                fail : function () {
+                    console.log("fail!")
+                },
+                error : function () {
+                    console.log("error!")
+                }
+            });
+
+
+            //为了避免ajax请求数据来生成文章div元素的慢于分页div元素，这里就设置一个定时器强制，分页div元素在页面加载完成后1s后再加载！
+            var timer1 = window.setTimeout(function () {
+
+                //动态生成分页div元素，并设置分页效果
+                $('.contentList').append('<div id="page"></div>');
+                $("#page").Page({
+                    totalPages: 7,//分页总数
+                    liNums: 5,//分页的数字按钮数(建议取奇数)
+                    activeClass: 'activP', //active 类样式定义
+                    callBack : function(page){
+                        //console.log(page)
+                    }
+                });
+            },1000)
+
+
+        });
+
+
+
+    </script>
+
+
 </body>
 </html>
