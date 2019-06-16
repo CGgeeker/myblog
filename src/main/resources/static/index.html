@@ -307,7 +307,7 @@
 								/*var listlength = result.data.length;*/
 								var labelarr = result.data;
 								//jquery动态拼接li标签
-								for(var i in labelarr){
+								for(let i in labelarr){
 									$('.labelList').append('<a class="label label-default" href="https://blog.csdn.net/qq_40436854">'+labelarr[i].labelName+'</a>');
 								}
 							}else{}
@@ -324,8 +324,6 @@
 
 		});
 		$(function () {
-
-
 			$.ajax({
 				type : "GET",
 				url : "/sitetip/findAllSiteTip",
@@ -365,8 +363,6 @@
 
 						/*window.clearInterval(t1); //去掉定时器的方法*/
 
-
-
 					}else{}
 				},
 				fail : function () {
@@ -405,62 +401,54 @@
 					if(result1.status == 200){
 						/*var listlength = result.data.length;*/
 						var articlearr = result1.data;
+
 						//jquery动态拼接li标签
-						for(var i in articlearr){
-						/*$.ajax({
-							type : "GET",
-							url : "/articleandlabel/findArticleAndLabelById",
-							data : {
-								"articleId" : parseInt(articlearr[i].articleId)
-							},
-							dataType : "json",
-							success : function (result2) {
-								if(result2.status == 200){
-									var labelstr="";
-									var publishTime = layui.util.toDateString(articlearr[i].publishTime, 'yyyy-MM-dd HH:mm:ss')//时间戳->常规时间格式
-                                    console.log("{}{}{}{}}{}labelstr : " + labelstr);
-									var articleandlabelarr = result2.data;
-									for(var j in articleandlabelarr){
-										labelstr += '<a class="label label-default">'+articleandlabelarr[j].labelName+'</a>';
-                                        console.log("{}{}{}{}}{}labelstr11 : " + labelstr);
+						for(let i in articlearr){
+
+							(function (i) {    //这里采用形如：(function(i){...})(i)的闭包方式解决var声明变量的作用域和js回收机制问题
+								$.ajax({                      //这里也可以直接用将var 变为let去声明变量就不需要闭包了！
+									type : "GET",
+									url : "/articleandlabel/findArticleAndLabelById",
+									data : {
+										"articleId" : parseInt(articlearr[i].articleId)
+									},
+									dataType : "json",
+									success : function (result2) {
+										if(result2.status == 200){
+											var labelstr="";
+											var publishTime = layui.util.toDateString(articlearr[i].publishTime, 'yyyy-MM-dd HH:mm:ss')//时间戳->常规时间格式
+											console.log("{}{}{}{}}{}labelstr : " + labelstr);
+											var articleandlabelarr = result2.data;
+											for(let j in articleandlabelarr){
+												labelstr += '<a class="label label-default">'+articleandlabelarr[j].labelName+'</a>';
+												console.log("{}{}{}{}}{}labelstr11 : " + labelstr);
+											}
+											console.log(":::::::::::::::::::::::::::::::::::::::::::::::::::IIIIIIIIIIIIIIIIIIII:"+i);
+
+											$('.contentList').append('<div class="panel panel-default"><div class="panel-body"><div class="contentleft article-firstdiv">'
+													+'<h4><a class="title" href="/article_detail.html">'+articlearr[i].title+'</a></h4>'
+													+'<p>'+labelstr+'</p>'
+													+'<p class="overView">'+articlearr[i].content.substr(0,200)+'</p>'
+													+'<p><span class="count"><i class="glyphicon glyphicon-user"></i><a href="#">'+articlearr[i].author
+													+'</a></span> <span class="count"><i class="glyphicon glyphicon-eye-open"></i>阅读:'+articlearr[i].readingNum
+													+'</span><span class="count"><i class="glyphicon glyphicon-comment"></i>'
+													+"评论:暂无"+'</span><span class="count"><i class="glyphicon glyphicon-time"></i>'+publishTime
+													+'</span></p></div>'+'<div class="contentImage article-seconddiv"><div class="row"><a href="#" class="thumbnail w_thumbnail">'
+													+'<img src="'+articlearr[i].articleImg+'" alt="...">'+'</a></div></div></div></div>');
+
+										}else{}
+									},
+									fail : function () {
+										console.log("fail");
+									},
+									error : function () {
+										console.log("error");
 									}
 
-									$('.contentList').append('<div class="panel panel-default"><div class="panel-body"><div class="contentleft article-firstdiv">'
-									+'<h4><a class="title" href="/article_detail.html">'+articlearr[i].title+'</a></h4>'
-									+'<p>'+labelstr+'</p>'
-									+'<p class="overView">'+articlearr[i].content.substr(0,200)+'</p>'
-									+'<p><span class="count"><i class="glyphicon glyphicon-user"></i><a href="#">'+articlearr[i].author
-									+'</a></span> <span class="count"><i class="glyphicon glyphicon-eye-open"></i>阅读:'+articlearr[i].readingNum
-									+'</span><span class="count"><i class="glyphicon glyphicon-comment"></i>'
-									+"评论:暂无"+'</span><span class="count"><i class="glyphicon glyphicon-time"></i>'+publishTime
-									+'</span></p></div>'+'<div class="contentImage article-seconddiv"><div class="row"><a href="#" class="thumbnail w_thumbnail">'
-									+'<img src="'+articlearr[i].articleImg+'" alt="...">'+'</a></div></div></div></div>');
+								});
+							})(i);
 
-								}else{}
-							},
-							fail : function () {
-								console.log("fail");
-							},
-							error : function () {
-								console.log("error");
-							}
-
-						});*/
-
-						var publishTime = layui.util.toDateString(articlearr[i].publishTime, 'yyyy-MM-dd HH:mm:ss')//时间戳->常规时间格式
-
-						$('.contentList').append('<div class="panel panel-default"><div class="panel-body"><div class="contentleft article-firstdiv">'
-						+'<h4><a class="title" href="/article_detail.html">'+articlearr[i].title+'</a></h4>'
-						+'<p><a class="label label-default">'+"暂无"+'</a><a class="label label-default">'+"tomcat负载均衡"+'</a></p>'
-						+'<p class="overView">'+articlearr[i].content.substr(0,200)+'</p>'
-						+'<p><span class="count"><i class="glyphicon glyphicon-user"></i><a href="#">'+articlearr[i].author
-						+'</a></span> <span class="count"><i class="glyphicon glyphicon-eye-open"></i>阅读:'+articlearr[i].readingNum
-						+'</span><span class="count"><i class="glyphicon glyphicon-comment"></i>'
-						+"评论:暂无"+'</span><span class="count"><i class="glyphicon glyphicon-time"></i>'+publishTime
-						+'</span></p></div>'+'<div class="contentImage article-seconddiv"><div class="row"><a href="#" class="thumbnail w_thumbnail">'
-						+'<img src="'+articlearr[i].articleImg+'" alt="...">'+'</a></div></div></div></div>');
-
-						}
+						};
 
 
 					}else{}
