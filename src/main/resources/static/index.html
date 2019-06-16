@@ -174,37 +174,10 @@
 								<h3 class="panel-title">最新发布</h3>
 							</div>
 							<div class="panel-body">
-								<ul class="list-unstyled sidebar">
-									<li>
+								<ul class="list-unstyled sidebar newpublish-ul">
+									<!--<li>
 										<a href="/post/04928311">排序算法之冒泡排序 － java实现</a>
-									</li>
-									<li>
-										<a href="/post/32097759">快速搭建基于二进制日志文件的 mysql 复制</a>
-									</li>
-									<li>
-										<a href="/post/09196557">web 服务器负载均衡教程，快速搭建高可用服务器集群</a>
-									</li>
-									<li>
-										<a href="/post/20654391">使用 redis 和 spring-session 实现 tomcat、glassfish 等 web 服务器集群 session 共享</a>
-									</li>
-									<li>
-										<a href="/post/41501569">使用 Nginx 实现 tomcat、glassfish 等 web 服务器负载均衡</a>
-									</li>
-									<li>
-										<a href="/post/89658700">mysql 复制（replication）基础概念和应用场景简介</a>
-									</li>
-									<li>
-										<a href="/post/03088922">redis 单节点在 Linux 生产环境的安装和简单配置</a>
-									</li>
-									<li>
-										<a href="/post/05203355">使用 jQuery 的 val() 方法来获取以及设置表单元素值</a>
-									</li>
-									<li>
-										<a href="/post/03120718">使用 jQuery 的 removeProp() 方法来删除元素的特性（property）</a>
-									</li>
-									<li>
-										<a href="/post/37454977">使用 jQuery 的 prop() 方法来获取以及设置元素的特性（property）</a>
-									</li>
+									</li>-->
 								</ul>
 							</div>
 						</div>
@@ -274,32 +247,36 @@
 			backToTopFun();
 		});
 
-		$('.testsessionvalue').click(function () {
-
-			$.ajax({
-				type : "GET",
-				url : "/user/getLoginUserSession",
-				data :{},
-				dataType : "json",
-				success : function (result) {
-					console.log(result);
-					/*alert("session数据："+result.data)*/
-					if(result.status==500){
-						window.location.href = '/login.html';  // ajax控制跳转页面
-					}
-				},
-				fail : function () {
-					console.log("失败");
-				},
-				error : function () {
-					console.log("错误");
-				}
-
-			});
-		});
 
 		$(function () {
 
+			<!--处理测试没有session情况下访问没有权限的模块的强制转跳验证-->
+			$('.testsessionvalue').click(function () {
+
+				$.ajax({
+					type : "GET",
+					url : "/user/getLoginUserSession",
+					data :{},
+					dataType : "json",
+					success : function (result) {
+						console.log(result);
+						/*alert("session数据："+result.data)*/
+						if(result.status==500){
+							window.location.href = '/login.html';  // ajax控制跳转页面
+						}
+					},
+					fail : function () {
+						console.log("失败");
+					},
+					error : function () {
+						console.log("错误");
+					}
+
+				});
+			});
+
+
+				<!--获取标签信息的ajax-->
 				$.ajax({
 					type : "GET",
 					url : "/label/findAllLabel",
@@ -324,9 +301,7 @@
 
 				});
 
-
-		});
-		$(function () {
+			<!--获取站点公告信息的ajax-->
 			$.ajax({
 				type : "GET",
 				url : "/sitetip/findAllSiteTip",
@@ -379,6 +354,7 @@
 
 			});
 
+			<!--处理站点公告点击事件-->
 			$('.sitetip-a').click(function () {
 
 				layer.alert($('.sitetip-content').text(), {
@@ -388,9 +364,8 @@
 
 			});
 
-		});
 
-		$(function () {
+			<!--获取指定范围内的文章信息的ajax-->
 			$.ajax({
 				type : "GET",
 				url : "/article/findAllArticle",
@@ -410,7 +385,8 @@
 						for(let i in articlearr){
 
 							(function (i) {    //这里采用形如：(function(i){...})(i)的闭包方式解决var声明变量的作用域和js回收机制问题
-								$.ajax({                      //这里也可以直接用将var 变为let去声明变量就不需要闭包了！
+					<!--内套获取文章标签和评论数信息的ajax-->	//这里也可以直接用将var 变为let去声明变量就不需要闭包了！
+								$.ajax({
 									type : "GET",
 									url : "/articleandlabel/findArticleAndLabelAndArticleCountById",
 									data : {
@@ -428,6 +404,7 @@
 												console.log("{}{}{}{}}{}labelstr11 : " + labelstr);
 											}
 
+											//动态拼接首页左边最新发布的列表的子元素
 											$('.contentList').append('<div class="panel panel-default"><div class="panel-body"><div class="contentleft article-firstdiv">'
 												+'<h4><a class="title" href="/article_detail.html">'+articlearr[i].title+'</a></h4>'
 												+'<p>'+labelstr+'</p>'
@@ -438,6 +415,7 @@
 												+"评论:"+articleCount+'</span><span class="count"><i class="glyphicon glyphicon-time"></i>'+publishTime
 												+'</span></p></div>'+'<div class="contentImage article-seconddiv"><div class="row"><a href="#" class="thumbnail w_thumbnail">'
 												+'<img src="'+articlearr[i].articleImg+'" alt="...">'+'</a></div></div></div></div>');
+
 
 										}else{}
 									},
@@ -461,7 +439,45 @@
 					console.log("error!")
 				}
 			});
+
+
+
+			<!--获取指定范围内的文章信息(其实只获取文章标题)的ajax-->
+			$.ajax({
+				type: "GET",
+				url: "/article/findAllArticle",
+				data: {
+					"startIndex": 0,
+					"endIndex": 10
+				},
+				dataType: "json",
+				success : function (result) {
+					if(result.status == 200){
+
+						var articlearr = result.data;
+
+						//jquery动态拼接li标签
+						for(let i in articlearr){
+
+							//动态拼接首页右边的简单的最新发布列表子元素
+							$('.newpublish-ul').append('<li><a href="/article_detail.html">'+articlearr[i].title+'</a></li>');
+						}
+
+					}else{}
+				},
+				fail : function () {
+					console.log("fail!")
+				},
+				error : function () {
+					console.log("error!")
+				}
+			});
+
+
+
+
 		});
+
 
 	</script>
 
