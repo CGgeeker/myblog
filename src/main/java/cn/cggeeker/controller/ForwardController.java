@@ -15,7 +15,7 @@ import java.io.IOException;
  * @version:1.0
  */
 @Controller
-public class ForwardController {
+public class ForwardController {  // 请求转发控制器
 
     @RequestMapping("/testIndex")
     public void testIndex(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

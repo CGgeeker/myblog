@@ -22,11 +22,11 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("/sitetip")
-public class SiteTipController {
+public class SiteTipController {  //公告控制器
     @Autowired
     SiteTipService siteTipService;
 
-    @GetMapping("/findAllSiteTip")
+    @GetMapping("/findAllSiteTip") //查找公告表中所有的公告信息
     public ResultJson findAllSiteTip(){
         ResultJson resultJson = new ResultJson();
         List<SiteTip> sitetipList = siteTipService.findAllSiteTip();

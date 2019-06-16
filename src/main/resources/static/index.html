@@ -94,10 +94,16 @@
 						</div>
 
 						<div class="panel panel-default contenttop">
-							<a href="/article_detail.html">
+							<a href="#" class="bozhuzhiding-a">
 								<strong>博主置顶</strong>
 								<h3 class="title">嫁人就嫁程序员</h3>
-								<p class="overView">个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中。。。</p>
+								<p class="overView">
+								博主 ：CG(CGgeeker)
+								<br>
+								Q Q : 2574691263
+								<br>
+								<span style="color: #e74c3c">自我描述 ：一个正二八百的健身爱好者 + 爱开发的IT人才！</span>
+								</p>
 							</a>
 						</div>
 
@@ -157,10 +163,7 @@
 							</div>
 							<div class="panel-body">
 								<div class="labelList">
-								<!--<a class="label label-default">tomcat负载均衡</a>
-									<a class="label label-default">panel</a>
-									<a class="label label-default" href="https://blog.csdn.net/qq_40436854">linux</a>
-									<a class="label label-default" href="/tag/Nginx">Nginx</a>
+									<!--<a class="label label-default">tomcat负载均衡</a>
 									<a class="label label-default" href="/tag/Redis">Redis</a>-->
 								</div>
 							</div>
@@ -335,7 +338,9 @@
 						var sitetiparr = result.data;
 
 						//初始化站点公告样式
-						$('.sitetip-a').css({"text-decoration":"none"}); //去掉a标签的下划线
+						$('.sitetip-a').css({"text-decoration":"none"}); //去掉站点公告a标签的下划线
+						$('.bozhuzhiding-a').css({"text-decoration":"none"}); //去掉博主置顶a标签的下划线
+
 						var t0 = window.setTimeout(function(){
 							$('.sitetip-sitetip').css({"background-color":"#836FFF"});
 							$('.sitetip-name').css({"color":"#836FFF"});
@@ -383,7 +388,6 @@
 
 			});
 
-
 		});
 
 		$(function () {
@@ -392,7 +396,7 @@
 				url : "/article/findAllArticle",
 				data : {
 					"startIndex" : 0,
-					"endIndex" : 4
+					"endIndex" : 5
 				},
 				dataType : "json",
 				success : function (result1) {
@@ -408,7 +412,7 @@
 							(function (i) {    //这里采用形如：(function(i){...})(i)的闭包方式解决var声明变量的作用域和js回收机制问题
 								$.ajax({                      //这里也可以直接用将var 变为let去声明变量就不需要闭包了！
 									type : "GET",
-									url : "/articleandlabel/findArticleAndLabelById",
+									url : "/articleandlabel/findArticleAndLabelAndArticleCountById",
 									data : {
 										"articleId" : parseInt(articlearr[i].articleId)
 									},
@@ -417,24 +421,23 @@
 										if(result2.status == 200){
 											var labelstr="";
 											var publishTime = layui.util.toDateString(articlearr[i].publishTime, 'yyyy-MM-dd HH:mm:ss')//时间戳->常规时间格式
-											console.log("{}{}{}{}}{}labelstr : " + labelstr);
-											var articleandlabelarr = result2.data;
+											var articleandlabelarr = result2.data.articleAndLabelList;  //获取该文章标签信息的list
+											var articleCount = result2.data.articleCount;               //获取该文章的评论总数
 											for(let j in articleandlabelarr){
 												labelstr += '<a class="label label-default">'+articleandlabelarr[j].labelName+'</a>';
 												console.log("{}{}{}{}}{}labelstr11 : " + labelstr);
 											}
-											console.log(":::::::::::::::::::::::::::::::::::::::::::::::::::IIIIIIIIIIIIIIIIIIII:"+i);
 
 											$('.contentList').append('<div class="panel panel-default"><div class="panel-body"><div class="contentleft article-firstdiv">'
-													+'<h4><a class="title" href="/article_detail.html">'+articlearr[i].title+'</a></h4>'
-													+'<p>'+labelstr+'</p>'
-													+'<p class="overView">'+articlearr[i].content.substr(0,200)+'</p>'
-													+'<p><span class="count"><i class="glyphicon glyphicon-user"></i><a href="#">'+articlearr[i].author
-													+'</a></span> <span class="count"><i class="glyphicon glyphicon-eye-open"></i>阅读:'+articlearr[i].readingNum
-													+'</span><span class="count"><i class="glyphicon glyphicon-comment"></i>'
-													+"评论:暂无"+'</span><span class="count"><i class="glyphicon glyphicon-time"></i>'+publishTime
-													+'</span></p></div>'+'<div class="contentImage article-seconddiv"><div class="row"><a href="#" class="thumbnail w_thumbnail">'
-													+'<img src="'+articlearr[i].articleImg+'" alt="...">'+'</a></div></div></div></div>');
+												+'<h4><a class="title" href="/article_detail.html">'+articlearr[i].title+'</a></h4>'
+												+'<p>'+labelstr+'</p>'
+												+'<p class="overView">'+articlearr[i].content.substr(0,200)+'</p>'
+												+'<p><span class="count"><i class="glyphicon glyphicon-user"></i><a href="#">'+articlearr[i].author
+												+'</a></span> <span class="count"><i class="glyphicon glyphicon-eye-open"></i>阅读:'+articlearr[i].readingNum
+												+'</span><span class="count"><i class="glyphicon glyphicon-comment"></i>'
+												+"评论:"+articleCount+'</span><span class="count"><i class="glyphicon glyphicon-time"></i>'+publishTime
+												+'</span></p></div>'+'<div class="contentImage article-seconddiv"><div class="row"><a href="#" class="thumbnail w_thumbnail">'
+												+'<img src="'+articlearr[i].articleImg+'" alt="...">'+'</a></div></div></div></div>');
 
 										}else{}
 									},
@@ -447,13 +450,9 @@
 
 								});
 							})(i);
-
 						};
 
-
 					}else{}
-
-
 				},
 				fail : function () {
 					console.log("fail!")

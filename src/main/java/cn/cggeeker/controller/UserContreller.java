@@ -27,7 +27,7 @@ import java.sql.Timestamp;
 @Controller
 @Slf4j
 @RequestMapping("/user")
-public class UserContreller {
+public class UserContreller {  // 用户控制器
     @Autowired
     private UserService userService;
 
@@ -109,7 +109,7 @@ public class UserContreller {
     }
 
     @GetMapping("/getLoginUserSession")
-    @ResponseBody
+    @ResponseBody                       //获取已经登录（或者称之为在线）的用户信息
     public ResultJson getLoginUserSession(HttpServletRequest request , HttpServletResponse response){
         ResultJson resultJson = new ResultJson();
         User user = (User)request.getSession().getAttribute("userObject");

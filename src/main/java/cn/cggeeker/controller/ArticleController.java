@@ -20,11 +20,11 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("/article")
-public class ArticleController {
+public class ArticleController {   //文章控制器
     @Autowired
     ArticleService articleService;
 
-    @GetMapping("/findAllArticle")
+    @GetMapping("/findAllArticle")   //查询限定范围内的文章信息
     public ResultJson findAllArticle(int startIndex,int endIndex){
         ResultJson resultJson = new ResultJson();
         List<Article> articleList = articleService.findAllArticle(startIndex,endIndex);

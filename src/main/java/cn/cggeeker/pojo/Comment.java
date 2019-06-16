@@ -19,7 +19,7 @@ public class Comment {
 
     @Id
     @KeySql(useGeneratedKeys = true)
-    private int comment_id;
+    private int commentId;
 
     private String userName;
 

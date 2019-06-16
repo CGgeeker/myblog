@@ -14,7 +14,8 @@
 
     <select id="findAllArticle" parameterType="java.lang.Integer" resultType="Article">
         select <include refid="Base_Column_List"/>
-        from article_tb limit #{startIndex,jdbcType=INTEGER} , #{endIndex,jdbcType=INTEGER};
+        from article_tb order by publishtime DESC
+        limit #{startIndex,jdbcType=INTEGER} , #{endIndex,jdbcType=INTEGER};
     </select>
 
 </mapper>

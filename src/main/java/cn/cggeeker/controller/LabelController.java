@@ -22,11 +22,11 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("/label")
-public class LabelController {
+public class LabelController {   //标签控制器
     @Autowired
     LabelService labelService;
 
-    @GetMapping("/findAllLabel")
+    @GetMapping("/findAllLabel")   //查找标签表中所有标签信息
     public ResultJson findAllLabel(){
 
         ResultJson resultJson = new ResultJson();

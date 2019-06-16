@@ -26,7 +26,7 @@ import java.util.Map;
 @Controller
 @Slf4j
 @RequestMapping("/hero")
-public class HeroController {
+public class HeroController {   // 测试用的控制器
     @Autowired
     private HeroService heroService;
 
