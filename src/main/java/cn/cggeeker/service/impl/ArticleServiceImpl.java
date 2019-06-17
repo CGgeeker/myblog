@@ -23,4 +23,14 @@ public class ArticleServiceImpl implements ArticleService {
     public List<Article> findAllArticle(int startIndex, int endIndex) {
         return articleMapper.findAllArticle(startIndex,endIndex);
     }
+
+    @Override
+    public Article findOneArticleById(int articleId) {
+        return articleMapper.findOneArticleById(articleId);
+    }
+
+    @Override
+    public int updateTheArticleReadingNum(int articleId, int newAddNum) {
+        return articleMapper.updateTheArticleReadingNum(articleId,newAddNum);
+    }
 }

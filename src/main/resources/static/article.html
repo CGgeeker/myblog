@@ -219,7 +219,7 @@
                                             //动态拼接首页左边最新发布的列表的子元素
                                             $('.contentList').append('<div class="panel panel-default w_article_item"><div class="panel-body"><div class="row"><div class="col-xs-6 col-md-3">'
                                                 +'<a href="#" class="thumbnail w_thumbnail"><img src="'+ articlearr[i].articleImg +'" alt="..."></a></div>'
-                                                +'<h4 class="media-heading"><a class="title" href="/article_detail.html">'+ articlearr[i].title +'</a></h4>'
+                                                +'<h4 class="media-heading"><a class="title article-a-getid" href="/article_detail.html?articleId='+articlearr[i].articleId+'" articleid="'+articlearr[i].articleId+'" readingnum="'+articlearr[i].readingNum+'">'+ articlearr[i].title +'</a></h4>'
                                                 +'<p>'+ labelstr +'</p>'
                                                 +'<p class="w_list_overview overView">'+ articlearr[i].content.substr(0,200) +'</p>'
                                                 +'<p class="count_r"><span class="count"><i class="glyphicon glyphicon-user"></i><a href="#">'+ articlearr[i].author +'</a></span>'
@@ -273,7 +273,8 @@
                         for(let i in articlearr){
 
                             //动态拼接首页右边的简单的最新发布列表子元素
-                            $('.newpublish-ul').append('<li><a href="/article_detail.html">'+articlearr[i].title+'</a></li>');
+                            /*$('.newpublish-ul').append('<li><a href="/article_detail.html">'+articlearr[i].title+'</a></li>');*/
+							$('.newpublish-ul').append('<li><a class="article-a-getid" href="/article_detail.html?articleId='+articlearr[i].articleId+'" articleid="'+articlearr[i].articleId+'" readingnum="'+articlearr[i].readingNum+'">'+articlearr[i].title+'</a></li>');
                         }
 
                     }else{}
@@ -301,6 +302,24 @@
                     }
                 });
             },1000)
+
+
+			//为解决jquery动态生成节点造成节点点击事件失效，这里我们采用js的事件委托机制处理
+			$(document).on("click",".article-a-getid",function(){
+				var readingnum = $(this).attr("readingnum"); //JQuery通过click事件获取当前点击对象的非固定属性
+				var articleid = $(this).attr("articleid");  //这里没有到，阅读量+1 的动作可以在前台处理，也可以在数据库处理
+				/* alert("点击a标签阅读量："+readingnum+"文章id："+articleid);
+                 console.log("点击a标签阅读量："+readingnum);*/
+
+				//这是一个点击a标签后将阅读量+1 的ajax的post请求
+				$.post("/article/updateTheArticleReadingNum", {
+							"articleId" : articleid,
+							"newAddNum" : 1},
+						function (result) {
+							console.log("阅读量+1成功！");
+						});
+
+			});
 
 
         });

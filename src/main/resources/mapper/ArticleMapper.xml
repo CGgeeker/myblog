@@ -18,4 +18,16 @@
         limit #{startIndex,jdbcType=INTEGER} , #{endIndex,jdbcType=INTEGER};
     </select>
 
+    <select id="findOneArticleById" parameterType="java.lang.Integer" resultType="Article">
+        select <include refid="Base_Column_List"/>
+        from article_tb
+        where articleid = #{articleId , jdbcType=INTEGER}
+    </select>
+
+    <update id="updateTheArticleReadingNum" parameterType="java.lang.Integer">
+        update article_tb
+        set readingnum = readingnum + #{newAddNum,jdbcType=INTEGER}
+        where article_id = #{articleId,jdbcType=INTEGER}
+    </update>
+
 </mapper>

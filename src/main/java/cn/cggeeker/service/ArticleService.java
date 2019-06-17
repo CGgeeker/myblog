@@ -13,4 +13,8 @@ import java.util.List;
 public interface ArticleService {
 
     public List<Article> findAllArticle(int startIndex, int endIndex);
+
+    public Article findOneArticleById(int articleId);
+
+    public int updateTheArticleReadingNum(int articleId ,int newAddNum);
 }

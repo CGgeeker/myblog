@@ -6,6 +6,7 @@ import cn.cggeeker.util.ResultJson;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,6 +36,35 @@ public class ArticleController {   //文章控制器
         }else{
             resultJson.setStatus(500);
             resultJson.setMessage("文章信息为空！");
+        }
+        return resultJson;
+    }
+
+    @GetMapping("/findOneArticleById")
+    public ResultJson findOneArticleById(int articleId){
+        ResultJson resultJson = new ResultJson();
+        Article article = articleService.findOneArticleById(articleId);
+        if(article!=null){
+            resultJson.setStatus(200);
+            resultJson.setMessage("查询文章成功！");
+            resultJson.setData(article);
+        }else{
+            resultJson.setStatus(500);
+            resultJson.setMessage("文章信息为空！");
+        }
+        return resultJson;
+    }
+
+    @PostMapping("/updateTheArticleReadingNum")
+    public ResultJson updateTheArticleReadingNum(int articleId, int newAddNum){
+        ResultJson resultJson = new ResultJson();
+        int affectRow = articleService.updateTheArticleReadingNum(articleId,newAddNum);
+        if(affectRow>0){
+            resultJson.setStatus(200);
+            resultJson.setMessage("文章阅读量+1成功！");
+        }else{
+            resultJson.setStatus(200);
+            resultJson.setMessage("文章阅读量+1失败！");
         }
         return resultJson;
     }
