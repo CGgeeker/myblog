@@ -20,8 +20,8 @@ public class ArticleServiceImpl implements ArticleService {
     ArticleMapper articleMapper;
 
     @Override
-    public List<Article> findAllArticle(int startIndex, int endIndex) {
-        return articleMapper.findAllArticle(startIndex,endIndex);
+    public List<Article> findAllArticle(int startIndex, int pageSize) {
+        return articleMapper.findAllArticle(startIndex,pageSize);
     }
 
     @Override

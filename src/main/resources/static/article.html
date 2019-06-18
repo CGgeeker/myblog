@@ -64,7 +64,7 @@
 			<div class="row w_main_row">
 				
 				<ol class="breadcrumb w_breadcrumb">
-				  <li><a href="#">首页</a></li>
+				  <li><a href="/index.html">首页</a></li>
 				  <li class="active">文章</li>
 				  <span class="w_navbar_tip">我们长路漫漫，只因学无止境。</span>
 				</ol>
@@ -121,6 +121,7 @@
 						
 						
 					  </div>
+                    <div class="panel-body div-pagination"></div>  <!--分页div-->
 					</div>
 					
 				</div>
@@ -183,7 +184,7 @@
                 url : "/article/findAllArticle",
                 data : {
                     "startIndex" : 0,
-                    "endIndex" : 6
+                    "pageSize" : 5
                 },
                 dataType : "json",
                 success : function (result1) {
@@ -222,7 +223,7 @@
                                                 +'<h4 class="media-heading"><a class="title article-a-getid" href="/article_detail.html?articleId='+articlearr[i].articleId+'" articleid="'+articlearr[i].articleId+'" readingnum="'+articlearr[i].readingNum+'">'+ articlearr[i].title +'</a></h4>'
                                                 +'<p>'+ labelstr +'</p>'
                                                 +'<p class="w_list_overview overView">'+ articlearr[i].content.substr(0,200) +'</p>'
-                                                +'<p class="count_r"><span class="count"><i class="glyphicon glyphicon-user"></i><a href="#">'+ articlearr[i].author +'</a></span>'
+                                                +'<p class="count_r"><span class="count"><i class="glyphicon glyphicon-user"></i><a href="/about.html">'+ articlearr[i].author +'</a></span>'
                                                 +'<span class="count"><i class="glyphicon glyphicon-eye-open"></i>阅读:'+ articlearr[i].readingNum +'</span>'
                                                 +'<span class="count"><i class="glyphicon glyphicon-comment"></i>评论:'+ articleCount +'</span>'
                                                 +'<span class="count"><i class="glyphicon glyphicon-time"></i>'+ publishTime +'</span>'
@@ -261,7 +262,7 @@
                 url: "/article/findAllArticle",
                 data: {
                     "startIndex": 0,
-                    "endIndex": 10
+                    "pageSize": 10
                 },
                 dataType: "json",
                 success : function (result) {
@@ -289,19 +290,104 @@
 
 
             //为了避免ajax请求数据来生成文章div元素的慢于分页div元素，这里就设置一个定时器强制，分页div元素在页面加载完成后1s后再加载！
-            var timer1 = window.setTimeout(function () {
+
 
                 //动态生成分页div元素，并设置分页效果
-                $('.contentList').append('<div id="page"></div>');
+                $('.div-pagination').append('<div id="page"></div>');
                 $("#page").Page({
                     totalPages: 7,//分页总数
                     liNums: 5,//分页的数字按钮数(建议取奇数)
                     activeClass: 'activP', //active 类样式定义
                     callBack : function(page){
-                        //console.log(page)
+
+                        $('.contentList').empty() //分页查询前先清空上一页的节点元素
+
+                        console.log("page : "+page);
+                        var pageSize = 5;
+                        var startIndex = (page - 1) * pageSize;
+                        var endIndex = page * pageSize;
+
+                        <!--获取指定范围内的文章信息的ajax-->
+                        $.ajax({
+                            type : "GET",
+                            url : "/article/findAllArticle",
+                            data : {
+                                "startIndex" : startIndex,
+                                "pageSize" : pageSize
+                            },
+                            dataType : "json",
+                            success : function (result1) {
+                                console.log(result1);
+
+                                if(result1.status == 200){
+                                    /*var listlength = result.data.length;*/
+                                    var articlearr = result1.data;
+
+                                    //jquery动态拼接li标签
+                                    for(let i in articlearr){
+
+                                        (function (i) {    //这里采用形如：(function(i){...})(i)的闭包方式解决var声明变量的作用域和js回收机制问题
+                                            <!--内套获取文章标签和评论数信息的ajax-->	//这里也可以直接用将var 变为let去声明变量就不需要闭包了！
+                                            $.ajax({
+                                                type : "GET",
+                                                url : "/articleandlabel/findArticleAndLabelAndArticleCountById",
+                                                data : {
+                                                    "articleId" : parseInt(articlearr[i].articleId)
+                                                },
+                                                dataType : "json",
+                                                success : function (result2) {
+                                                    if(result2.status == 200){
+                                                        var labelstr="";
+                                                        var publishTime = layui.util.toDateString(articlearr[i].publishTime, 'yyyy-MM-dd HH:mm:ss')//时间戳->常规时间格式
+                                                        var articleandlabelarr = result2.data.articleAndLabelList;  //获取该文章标签信息的list
+                                                        var articleCount = result2.data.articleCount;               //获取该文章的评论总数
+                                                        for(let j in articleandlabelarr){
+                                                            labelstr += '<a class="label label-default">'+articleandlabelarr[j].labelName+'</a>';
+                                                            console.log("{}{}{}{}}{}labelstr11 : " + labelstr);
+                                                        }
+
+                                                        //动态拼接首页左边最新发布的列表的子元素
+                                                        $('.contentList').append('<div class="panel panel-default w_article_item"><div class="panel-body"><div class="row"><div class="col-xs-6 col-md-3">'
+                                                            +'<a href="#" class="thumbnail w_thumbnail"><img src="'+ articlearr[i].articleImg +'" alt="..."></a></div>'
+                                                            +'<h4 class="media-heading"><a class="title article-a-getid" href="/article_detail.html?articleId='+articlearr[i].articleId+'" articleid="'+articlearr[i].articleId+'" readingnum="'+articlearr[i].readingNum+'">'+ articlearr[i].title +'</a></h4>'
+                                                            +'<p>'+ labelstr +'</p>'
+                                                            +'<p class="w_list_overview overView">'+ articlearr[i].content.substr(0,200) +'</p>'
+                                                            +'<p class="count_r"><span class="count"><i class="glyphicon glyphicon-user"></i><a href="/about.html">'+ articlearr[i].author +'</a></span>'
+                                                            +'<span class="count"><i class="glyphicon glyphicon-eye-open"></i>阅读:'+ articlearr[i].readingNum +'</span>'
+                                                            +'<span class="count"><i class="glyphicon glyphicon-comment"></i>评论:'+ articleCount +'</span>'
+                                                            +'<span class="count"><i class="glyphicon glyphicon-time"></i>'+ publishTime +'</span>'
+                                                            +'</p></div></div></div>');
+
+
+                                                    }else{}
+                                                },
+                                                fail : function () {
+                                                    console.log("fail");
+                                                },
+                                                error : function () {
+                                                    console.log("error");
+                                                }
+
+                                            });
+                                        })(i);
+
+                                    };
+
+                                }else{}
+                            },
+                            fail : function () {
+                                console.log("fail!")
+                            },
+                            error : function () {
+                                console.log("error!")
+                            }
+                        });
+
+
+
+
                     }
                 });
-            },1000)
 
 
 			//为解决jquery动态生成节点造成节点点击事件失效，这里我们采用js的事件委托机制处理

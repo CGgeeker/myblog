@@ -15,7 +15,7 @@ import java.util.List;
 @Repository
 public interface ArticleMapper {
 
-    public List<Article> findAllArticle(@Param("startIndex") int startIndex, @Param("endIndex")int endIndex);//根据指定范围查找所有
+    public List<Article> findAllArticle(@Param("startIndex") int startIndex, @Param("pageSize")int pageSize);//根据指定范围查找所有
 
     public Article findOneArticleById(int articleId); //根据articleId查找文章信息
 

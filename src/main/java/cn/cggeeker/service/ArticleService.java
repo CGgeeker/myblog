@@ -12,7 +12,7 @@ import java.util.List;
  */
 public interface ArticleService {
 
-    public List<Article> findAllArticle(int startIndex, int endIndex);
+    public List<Article> findAllArticle(int startIndex, int pageSize);
 
     public Article findOneArticleById(int articleId);
 

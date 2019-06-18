@@ -15,13 +15,13 @@
     <select id="findAllArticle" parameterType="java.lang.Integer" resultType="Article">
         select <include refid="Base_Column_List"/>
         from article_tb order by publishtime DESC
-        limit #{startIndex,jdbcType=INTEGER} , #{endIndex,jdbcType=INTEGER};
+        limit #{startIndex,jdbcType=INTEGER} , #{pageSize,jdbcType=INTEGER};
     </select>
 
     <select id="findOneArticleById" parameterType="java.lang.Integer" resultType="Article">
         select <include refid="Base_Column_List"/>
         from article_tb
-        where articleid = #{articleId , jdbcType=INTEGER}
+        where article_id = #{articleId , jdbcType=INTEGER}
     </select>
 
     <update id="updateTheArticleReadingNum" parameterType="java.lang.Integer">

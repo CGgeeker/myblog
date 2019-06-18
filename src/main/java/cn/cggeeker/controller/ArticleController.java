@@ -26,9 +26,9 @@ public class ArticleController {   //文章控制器
     ArticleService articleService;
 
     @GetMapping("/findAllArticle")   //查询限定范围内的文章信息
-    public ResultJson findAllArticle(int startIndex,int endIndex){
+    public ResultJson findAllArticle(int startIndex,int pageSize){
         ResultJson resultJson = new ResultJson();
-        List<Article> articleList = articleService.findAllArticle(startIndex,endIndex);
+        List<Article> articleList = articleService.findAllArticle(startIndex,pageSize);
         if(!articleList.isEmpty()){
             resultJson.setStatus(200);
             resultJson.setMessage("查询文章成功！");
