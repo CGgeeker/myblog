@@ -30,4 +30,9 @@
         where article_id = #{articleId,jdbcType=INTEGER}
     </update>
 
+    <insert id="insertOneArticle" parameterType="Article">
+        insert into article_tb(title,content,author,articleimg)
+        values(#{title,jdbcType=VARCHAR},#{content,jdbcType=VARCHAR},#{author,jdbcType=VARCHAR},#{articleImg,jdbcType=VARCHAR})
+    </insert>
+
 </mapper>

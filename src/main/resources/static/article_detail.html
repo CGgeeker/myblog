@@ -274,8 +274,8 @@
 
             //为解决jquery动态生成节点造成节点点击事件失效，这里我们采用js的事件委托机制处理
             $(document).on("click",".article-a-getid",function(){
-                var readingnum = $(this).attr("readingnum"); //JQuery通过click事件获取当前点击对象的非固定属性
-                var articleid = $(this).attr("articleid");  //这里没有到，阅读量+1 的动作可以在前台处理，也可以在数据库处理
+                var readingnum = $(this).attr("readingnum"); //JQuery通过click事件获取当前点击对象的非固定(自定义)属性
+                var articleid = $(this).attr("articleid");  //这里没有用到，阅读量+1 的动作可以在前台处理，也可以在数据库处理
                 /* alert("点击a标签阅读量："+readingnum+"文章id："+articleid);
                  console.log("点击a标签阅读量："+readingnum);*/
 

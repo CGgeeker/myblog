@@ -22,4 +22,8 @@ public interface ArticleMapper {
     //根据articleId增加文章的阅读（浏览）量 + 1
     public int updateTheArticleReadingNum(@Param("articleId")int articleId ,@Param("newAddNum")int newAddNum);
 
+    public int insertOneArticle(Article article);  //新增（插入）文章
+
+
+
 }

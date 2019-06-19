@@ -23,8 +23,11 @@ public class LabelServiceImpl implements LabelService {
 
     @Override
     public List<Label> findAllLabel() {
-
-
         return labelMapper.findAllLabel();
+    }
+
+    @Override
+    public int insertNewLabel(String newLabelName) {
+        return labelMapper.insertNewLabel(newLabelName);
     }
 }

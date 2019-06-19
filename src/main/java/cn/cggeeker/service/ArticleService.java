@@ -17,4 +17,6 @@ public interface ArticleService {
     public Article findOneArticleById(int articleId);
 
     public int updateTheArticleReadingNum(int articleId ,int newAddNum);
+
+    public int insertOneArticle(Article article);
 }

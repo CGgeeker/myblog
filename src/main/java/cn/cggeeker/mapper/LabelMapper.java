@@ -17,4 +17,6 @@ public interface LabelMapper extends Mapper<Label> {  /*继承通用Mapper，实
 
     public List<Label> findAllLabel();  //查找所有标签
 
+    public int insertNewLabel(String newLabelName); //新增标签
+
 }

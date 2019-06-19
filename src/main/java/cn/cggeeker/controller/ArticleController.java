@@ -40,7 +40,7 @@ public class ArticleController {   //文章控制器
         return resultJson;
     }
 
-    @GetMapping("/findOneArticleById")
+    @GetMapping("/findOneArticleById")  //根据文章id查找对应的文章信息
     public ResultJson findOneArticleById(int articleId){
         ResultJson resultJson = new ResultJson();
         Article article = articleService.findOneArticleById(articleId);
@@ -55,7 +55,7 @@ public class ArticleController {   //文章控制器
         return resultJson;
     }
 
-    @PostMapping("/updateTheArticleReadingNum")
+    @PostMapping("/updateTheArticleReadingNum")  //根据文章id将对应文章的阅读量加1
     public ResultJson updateTheArticleReadingNum(int articleId, int newAddNum){
         ResultJson resultJson = new ResultJson();
         int affectRow = articleService.updateTheArticleReadingNum(articleId,newAddNum);
@@ -65,6 +65,21 @@ public class ArticleController {   //文章控制器
         }else{
             resultJson.setStatus(200);
             resultJson.setMessage("文章阅读量+1失败！");
+        }
+        return resultJson;
+    }
+
+    @PostMapping("/insertOneArticle")
+    public ResultJson insertOneArticle(Article article){
+        ResultJson resultJson = new ResultJson();
+        article.setArticleImg("/img/brain.jpg");
+        int resultRow = articleService.insertOneArticle(article);
+        if(resultRow > 0){
+            resultJson.setStatus(200);
+            resultJson.setMessage("新增文章成功!");
+        }else{
+            resultJson.setStatus(500);
+            resultJson.setMessage("新增文章失败!");
         }
         return resultJson;
     }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.cggeeker.mapper.AdminMapper">
+    <resultMap id="BaseResultMap" type="Admin">  <!--springboot中实体类自动映射表字段(也就是：@Table(name = "xxx"))，无需这样配置了-->
+        <id column="admin_id" jdbcType="INTEGER" property="adminId"/>
+        <result column="adminname" jdbcType="VARCHAR" property="adminName"/>
+        <result column="password" jdbcType="VARCHAR" property="passWord"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="tel" jdbcType="VARCHAR" property="tel"/>
+        <result column="info" jdbcType="VARCHAR" property="info"/>
+        <result column="wechatimg" jdbcType="VARCHAR" property="wechatImg"/>
+    </resultMap>
+    <sql id="Base_Column_List">admin_id,adminname,password,email,tel,info,wechatimg</sql>
+
+    <select id="findAllAdmin" resultType="Admin">
+        select <include refid="Base_Column_List"/>
+        from admin_tb
+    </select>
+
+</mapper>

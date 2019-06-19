@@ -6,10 +6,7 @@ import cn.cggeeker.util.ResultJson;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -38,6 +35,21 @@ public class LabelController {   //标签控制器
         }else {
             resultJson.setStatus(500);
             resultJson.setMessage("标签查询为空！");
+        }
+        return resultJson;
+    }
+
+    @PostMapping("/insertNewLabel")
+    public ResultJson insertNewLabel(String newLabelName){
+        ResultJson resultJson = new ResultJson();
+
+        int resultRow = labelService.insertNewLabel(newLabelName);
+        if(resultRow > 0){
+            resultJson.setStatus(200);
+            resultJson.setMessage("新增标签成功!");
+        }else{
+            resultJson.setStatus(500);
+            resultJson.setMessage("新增标签失败或标签已存在!");
         }
         return resultJson;
     }

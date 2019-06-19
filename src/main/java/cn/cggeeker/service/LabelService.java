@@ -13,4 +13,6 @@ import java.util.List;
 public interface LabelService {
 
     public List<Label> findAllLabel();
+
+    public int insertNewLabel(String newLabelName);
 }

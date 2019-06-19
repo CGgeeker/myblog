@@ -1,6 +1,7 @@
 package cn.cggeeker.service;
 
 import cn.cggeeker.pojo.ArticleAndLabel;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -12,5 +13,7 @@ import java.util.List;
  */
 public interface ArticleAndLabelService {
     public List<ArticleAndLabel> findArticleAndLabelById(int articleId);
+
+    public int insertOneArticleAndLabel(String labelName, String title);
 
 }

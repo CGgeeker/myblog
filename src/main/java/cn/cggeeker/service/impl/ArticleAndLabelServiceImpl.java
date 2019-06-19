@@ -23,4 +23,9 @@ public class ArticleAndLabelServiceImpl implements ArticleAndLabelService {
     public List<ArticleAndLabel> findArticleAndLabelById(int articleId) {
         return articleAndLabelMapper.findArticleAndLabelById(articleId);
     }
+
+    @Override
+    public int insertOneArticleAndLabel(String labelName, String title) {
+        return articleAndLabelMapper.insertOneArticleAndLabel(labelName,title);
+    }
 }

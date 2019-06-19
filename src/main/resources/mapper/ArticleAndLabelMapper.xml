@@ -14,4 +14,9 @@
         where articleid = #{articleId,jdbcType=INTEGER}
     </select>
 
+    <insert id="insertOneArticleAndLabel" parameterType="java.lang.String">
+        insert into articleandlabel_tb(labelname,articleid)
+        values(#{labelName,jdbcType=VARCHAR},(select article_id from article_tb where title = #{title,jdbcType=VARCHAR}))
+    </insert>
+
 </mapper>

@@ -17,7 +17,7 @@ import javax.persistence.Table;
 public class Admin {
     @Id  //指定主键
     @KeySql(useGeneratedKeys = true)
-    private int admin_id;
+    private int adminId;
 
     private String adminName;
 

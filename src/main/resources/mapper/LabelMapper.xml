@@ -12,4 +12,8 @@
         from label_tb
     </select>
 
+    <insert id="insertNewLabel" parameterType="java.lang.String">
+        insert into label_tb (labelname) values(#{newLabelName,jdbcType=VARCHAR})
+    </insert>
+
 </mapper>
