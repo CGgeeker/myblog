@@ -115,8 +115,8 @@ $(function(){
 					</span>
 				<div class="w_search">
 					<div class="w_searchbox">
-						<input type="text" placeholder="search" />
-						<button>搜索</button>
+						<input type="text" placeholder="百度一下" />
+						<button class="btn-baidusearch">搜索</button>
 					</div>
 				</div>
 			</div>
@@ -245,7 +245,7 @@ $(function(){
 			});
 
 			$('.btn-addlabel').click(function () {
-				var newLabelName = $('.input-addlabel').val()
+				var newLabelName = $('.input-addlabel').val();
 				if(newLabelName == "" || newLabelName == undefined || newLabelName == null){
 					layer.alert('新增标签名不能为空哟!', {
 						icon: 7,
@@ -253,37 +253,69 @@ $(function(){
 					});
 				}else{
 					$.ajax({
-						type : "POST",
-						url : "/label/insertNewLabel",
-						data : {"newLabelName" : newLabelName},
-						dataType : "json",
-						success : function (result) {
-							if(result.status == 200){
-								//通过get请求获取所有标签信息并填充下拉框（刷新标签下拉框）
-								$.get("/label/findAllLabel",function (result) {
-									if(result.status == 200){
-										var labelArr = result.data;
-										$('#select-articlelabel').empty();
-										for(let i in labelArr){
-											$('#select-articlelabel').append('<option value="'+labelArr[i].labelName+'">'+labelArr[i].labelName+'</option>')
+						type: "GET",
+						url: "/user/getLoginUserSession",
+						data: {},
+						dataType: "json",
+						success: function (result) {
+							if (result.status == 200) {
+								/*"undefined" == typeof(modelType);*/
+								var username = null;
+								var adminname = null;
+								if (result.data.userObject != null) {  //判断session中的userObject对象是否为空，先判断防止报空指针异常
+									username = result.data.userObject.userName;
+								}
+								if (result.data.adminObject != null) {  //同上注释
+									adminname = result.data.adminObject.adminName;
+								}
+
+								/*	var username = result.data.userObject.userName;
+                                    var adminname = result.data.adminObject.adminName;*/
+								var leaveword = $('.textarea-leaveword').val();
+								if ((username != null) || (adminname == null)) { //判断登录这身份，禁止用户添加博客标签！
+									layer.alert('用户没有权限添加博客标签！', {
+										icon: 5,
+										title: "提示"
+									});
+								}else{   // 如果是博主身份就放行请求
+									$.ajax({
+										type : "POST",
+										url : "/label/insertNewLabel",
+										data : {"newLabelName" : newLabelName},
+										dataType : "json",
+										success : function (result) {
+											if(result.status == 200){
+												//通过get请求获取所有标签信息并填充下拉框（刷新标签下拉框）
+												$.get("/label/findAllLabel",function (result) {
+													if(result.status == 200){
+														var labelArr = result.data;
+														$('#select-articlelabel').empty();
+														for(let i in labelArr){
+															$('#select-articlelabel').append('<option value="'+labelArr[i].labelName+'">'+labelArr[i].labelName+'</option>')
+														}
+													}else{}
+												});
+												layer.msg("标签已新增!",{time : 2*1000});
+											}else{
+												layer.alert('标签已存在,新增失败!', {
+													icon: 5,
+													title: "提示"
+												});
+											}
+										},
+										error : function () {
+											layer.alert('标签已存在,新增失败!', {
+												icon: 5,
+												title: "提示"
+											});
 										}
-									}else{}
-								});
-								layer.msg("标签已新增!",{time : 2*1000});
-							}else{
-								layer.alert('标签已存在,新增失败!', {
-									icon: 5,
-									title: "提示"
-								});
+									});
+
+								}
 							}
-						},
-						error : function () {
-							layer.alert('标签已存在,新增失败!', {
-								icon: 5,
-								title: "提示"
-							});
 						}
-					});
+					})
+
 				}
 			});
 
@@ -303,47 +335,80 @@ $(function(){
 					layer.msg("文章标题不能为空噢!",{time : 2*1000});
 				}
 				else{
-					$.ajax({
-						type : "POST",
-						url : "/article/insertOneArticle",
-						data : {
-							"title":title,
-							"content":content,
-							"author":author
-						},
-						dataType : "json",
-						success : function (result) {
-							if(result.status == 200){
-								layer.alert('文章发布成功啦!', {
-									icon: 1,
-									title: "温馨提示"
-								});
-								$.ajax({
-									type : "POST",
-									url : "/articleandlabel/insertOneArticleAndLabel",
-									data : {
-										"labelName":labelName,
-										"title":title
-									},
-									dataType : "json",
-									success : function (result) {
-										if(result.status == 200){
-											console.log("标签和新文章关联到位！");
-										}else{
-											console.log("标签和新文章关联失败！")
-										}
-									}
 
-								});
-							}else{
-								layer.alert('文章发布出了点小问题!', {
-									icon: 5,
-									title: "温馨提示"
-								});
+					$.ajax({
+						type: "GET",
+						url: "/user/getLoginUserSession",
+						data: {},
+						dataType: "json",
+						success: function (result) {
+							if (result.status == 200) {
+								/*"undefined" == typeof(modelType);*/
+								var username = null;
+								var adminname = null;
+								if (result.data.userObject != null) {  //判断session中的userObject对象是否为空，先判断防止报空指针异常
+									username = result.data.userObject.userName;
+								}
+								if (result.data.adminObject != null) {  //同上注释
+									adminname = result.data.adminObject.adminName;
+								}
+
+								/*	var username = result.data.userObject.userName;
+                                    var adminname = result.data.adminObject.adminName;*/
+								var leaveword = $('.textarea-leaveword').val();
+								if ((username != null) || (adminname == null)) { //判断登录这身份，禁止用户写博客！
+									layer.alert('用户没有权限发布博客！', {
+										icon: 5,
+										title: "提示"
+									});
+								}else{   // 如果是博主身份就放行请求
+									$.ajax({
+										type : "POST",
+										url : "/article/insertOneArticle",
+										data : {
+											"title":title,
+											"content":content,
+											"author":author
+										},
+										dataType : "json",
+										success : function (result) {
+											if(result.status == 200){
+												layer.alert('文章发布成功啦!', {
+													icon: 1,
+													title: "温馨提示"
+												});
+												$.ajax({
+													type : "POST",
+													url : "/articleandlabel/insertOneArticleAndLabel",
+													data : {
+														"labelName":labelName,
+														"title":title
+													},
+													dataType : "json",
+													success : function (result) {
+														if(result.status == 200){
+															console.log("标签和新文章关联到位！");
+														}else{
+															console.log("标签和新文章关联失败！")
+														}
+													}
+
+												});
+											}else{
+												layer.alert('文章发布出了点小问题!', {
+													icon: 5,
+													title: "温馨提示"
+												});
+											}
+										}
+
+									});
+
+								}
 							}
 						}
+					})
 
-					});
 				}
 				console.log("title:::::::::" + title);
 				console.log("content:::::::::::::" + content);
@@ -358,8 +423,12 @@ $(function(){
 				window.location.href = "/index.html";
 			});
 
+			//按下搜索转跳百度
+			$('.btn-baidusearch').click(function () {
 
+				window.open("http://www.baidu.com", "_blank");
 
+			});
 
 
 

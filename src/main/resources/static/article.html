@@ -52,8 +52,8 @@
 				</span>
 				<div class="w_search">
 					<div class="w_searchbox">
-						<input type="text" placeholder="search" />
-						<button>搜索</button>
+						<input type="text" placeholder="百度一下" />
+						<button class="btn-baidusearch">搜索</button>
 					</div>
 				</div>
 			</div>
@@ -404,6 +404,12 @@
 						function (result) {
 							console.log("阅读量+1成功！");
 						});
+
+			});
+
+			$('.btn-baidusearch').click(function () {
+
+				window.open("http://www.baidu.com", "_blank");
 
 			});
 

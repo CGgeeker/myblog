@@ -34,8 +34,8 @@
 				</span>
 					<div class="w_search">
 						<div class="w_searchbox">
-							<input type="text" placeholder="search" />
-							<button class="testsessionvalue">搜索</button>
+							<input type="text" placeholder="百度一下" />
+							<button class="btn-baidusearch">搜索</button>
 						</div>
 					</div>
 				</div>
@@ -251,28 +251,31 @@
 		$(function () {
 
 			<!--处理测试没有session情况下访问没有权限的模块的强制转跳验证-->
-			$('.testsessionvalue').click(function () {
+			$('.btn-baidusearch').click(function () {
 
-				$.ajax({
-					type : "GET",
-					url : "/user/getLoginUserSession",
-					data :{},
-					dataType : "json",
-					success : function (result) {
-						console.log(result);
-						/*alert("session数据："+result.data)*/
-						if(result.status==500){
-							window.location.href = '/login.html';  // ajax控制跳转页面
+				window.open("http://www.baidu.com","_blank");
+
+				/*	$.ajax({
+						type : "GET",
+						url : "/user/getLoginUserSession",
+						data :{},
+						dataType : "json",
+						success : function (result) {
+							console.log(result);
+							/!*alert("session数据："+result.data)*!/
+							if(result.status==500){
+								window.location.href = '/login.html';  // ajax控制跳转页面
+							}
+						},
+						fail : function () {
+							console.log("失败");
+						},
+						error : function () {
+							console.log("错误");
 						}
-					},
-					fail : function () {
-						console.log("失败");
-					},
-					error : function () {
-						console.log("错误");
-					}
 
-				});
+				});*/
+
 			});
 
 

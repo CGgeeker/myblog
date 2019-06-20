@@ -157,8 +157,8 @@
 				</span>
 				<div class="w_search">
 					<div class="w_searchbox">
-						<input type="text" placeholder="search" />
-						<button>搜索</button>
+						<input type="text" placeholder="百度一下" />
+						<button class="btn-baidusearch">搜索</button>
 					</div>
 				</div>
 			</div>
@@ -225,7 +225,7 @@
 					
 				</div>
 				<div class="col-lg-3 col-md-3 w_main_right">
-					<img src="/img/slider/aboutphoto.png" />
+					<img src="/img/profession/person.png" style="margin-top:100px;height:450px;width: 340px;" />
 				</div>
 
 
@@ -455,8 +455,14 @@
 
 
 			});
-			
-			
+
+
+
+			$('.btn-baidusearch').click(function () {
+
+				window.open("http://www.baidu.com", "_blank");
+
+			});
 
 
 		});

@@ -21,7 +21,7 @@ public class RequestInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
         //首页路径以及登录放行
-        if ("/demo.html".equals(request.getRequestURI()) ||"/index.html".equals(request.getRequestURI()) || "/login.html".equals(request.getRequestURI())) {
+        if ("/index.html".equals(request.getRequestURI()) || "/login.html".equals(request.getRequestURI())) {
             log.debug("RequestInterceptor----------preHandle拦 - 截 - 器 - 处 - 理 - 中......000000000..");
             return true;
         }
