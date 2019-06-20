@@ -23,4 +23,9 @@ public class AdminServiceImpl implements AdminService {
     public List<Admin> findAllAdmin() {
         return adminMapper.findAllAdmin();
     }
+
+    @Override
+    public Admin adminLoginValidate(String adminName, String passWord) {
+        return adminMapper.adminLoginValidate(adminName,passWord);
+    }
 }

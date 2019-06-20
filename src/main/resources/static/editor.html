@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>无标题文档</title>
+<title>极客星辰个人博客</title>
 <meta name="renderer" content="webkit">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -107,7 +107,7 @@ $(function(){
 							<li><a href="/index.html">首页</a></li>
 							<li><a href="/about.html">关于</a></li>
 							<li><a href="/article.html">成长</a></li>
-							<li><a href="/editor.html" class="active">学习</a></li>
+							<li><a href="/editor.html" class="active">写博客</a></li>
 							<li><a href="">娱乐</a></li>
 							<li><a href="/moodList.html">说说</a></li>
 							<li><a href="/comment.html">留言</a></li>
@@ -227,10 +227,10 @@ $(function(){
 				/*console.log($(".input-articletitle").val())*/
 				var articleTitleLen = ($(".input-articletitle").val()).length;
 				$(".max-length-change").text(articleTitleLen);
-				if(articleTitleLen < 50){
+				if(articleTitleLen <= 50){  //博客文章标题不能超过50字
 					$(".max-length-change").css({"color":"#32CD32"});
 				}
-				else if(articleTitleLen == 50){
+				else if(articleTitleLen > 50){
 					$(".max-length-change").css({"color":"#EE2C2C"});
 				}
 
@@ -298,7 +298,11 @@ $(function(){
 				var labelName = $('#select-articlelabel').val();
 				if(content == ""||content == undefined || content == null){
 					layer.msg("文章内容不能为空哟!",{time : 2*1000});
-				}else{
+				}
+				else if(title == "" || title == undefined || title == null){
+					layer.msg("文章标题不能为空噢!",{time : 2*1000});
+				}
+				else{
 					$.ajax({
 						type : "POST",
 						url : "/article/insertOneArticle",
@@ -340,9 +344,6 @@ $(function(){
 						}
 
 					});
-
-
-
 				}
 				console.log("title:::::::::" + title);
 				console.log("content:::::::::::::" + content);
@@ -350,28 +351,6 @@ $(function(){
 
 			});
 
-
-	/*		$('.btn-addnewarticle').click(function () {
-				var title = $('.input-articletitle').val();
-				var content = $('.note-editable').val();
-				var author = $('#select-articleauthor').val();
-				if(content == ""||content == undefined || content == null){
-					layer.msg("文章内容不能为空哟!",{time : 2*1000});
-				}
-				console.log("title:::::::::" + title);
-				console.log("content:::::::::::::" + content);
-				console.log("author:::::::::::" + author);
-
-			/!*	$.ajax({
-					type : "POST",
-					url : "/article/insertOneArticle",
-					data : {
-
-					}
-				});*!/
-
-
-			});*/
 
 
 			//点击返回按钮返回首页

@@ -3,6 +3,121 @@
 <head>
 	<meta charset="UTF-8">
 	<title>极客星辰个人博客</title>
+
+	<style type="text/css">
+		.w_main_left{
+			height: 900px;
+		}
+		*{margin:0;padding: 0;}
+
+
+		.span-leavewordtime{
+
+		}
+		.span-leavewordname{
+			margin-left: 10px;
+			color: #d43f3a;
+		}
+		.max-length{
+			width: 5%;
+			height: 34px;
+			font: 18px SimSun;
+
+		}
+		.max-length-change{
+			color: #32CD32;
+		}
+
+
+
+		.wrap-leaveword{
+			width:820px;
+			height: 880px;
+			margin:0 auto;
+			border-right: 2px solid #ABABAB;
+			border-radius: 2px;
+			padding: 10px;
+			position: relative;
+			top: 10px;
+		}
+		.says-leaveword{
+			width:820px;
+			height: 200px;
+			position: absolute;
+		}
+		.says-leaveword h1{
+			font-size:18px;
+			color:#A8A8A8;
+			margin-bottom: 5px;
+		}
+		.textarea-leaveword{
+			width:800px;
+			height: 100px;
+			outline: none;
+			resize: none;
+			border:1px solid #ccc;
+			border-radius: 3px;
+			padding: 5px;
+			color:#660000;
+		}
+		.input-leaveword{
+			width:100px;
+			height: 30px;
+			border:none;
+			cursor: pointer;
+			background: #00CC66;
+			color:white;
+			border-radius: 2px;
+			position: absolute;
+			right: 28px;
+			bottom: 5px;
+			transition: all ease 0.4s;
+			font-size: 16px;
+		}
+		.input-leaveword:hover{
+			filter:alpha(opaciyt:70);
+			opacity: 0.7;
+		}
+		.ul-leaveword{
+			width:800px;
+			height: 640px;
+			position: absolute;
+			bottom: 0;
+			overflow-x: hidden;
+			overflow-y: scroll;
+
+		}
+		.li-leaveword{
+			width:750px;
+			margin-top: 16px;
+			border-bottom: 3px dotted #ccc;
+			list-style:none;
+			line-height:35px !important;
+			height:70px !important;
+			font-size: 14px;
+			color:#606060;
+			overflow: hidden;
+			filter: alpha(opacity:0);
+			opacity: 1;
+
+		}
+		.span-leaveword-timeandusername{
+			float: right;
+			margin-right: 30px;
+		}
+
+		.a-leaveword{
+			font-size: 14px;
+			color:#990000;
+			text-decoration: none;
+			margin-left: 10px;
+		}
+		.a-leaveword:hover{
+			color:red;
+			text-decoration: underline;
+		}
+	</style>
+
 </head>
 
 <!--<link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">-->
@@ -17,6 +132,8 @@
 
 <script type="text/javascript" src="/plugin/jquery.page.js"></script>
 <script src="/js/common.js"></script>
+<script src="/plugin/jquery.min.js"></script>
+<script src="/layui/layui.all.js"></script>
 <!--<script src="js/snowy.js"></script>-->
 
 
@@ -32,7 +149,7 @@
 						<li><a href="/index.html">首页</a></li>
 						<li><a href="/about.html">关于</a></li>
 						<li><a href="/article.html">成长</a></li>
-						<li><a href="/editor.html">学习</a></li>
+						<li><a href="/editor.html">写博客</a></li>
 						<li><a href="">娱乐</a></li>
 						<li><a href="/moodList.html"  >说说</a></li>
 						<li><a href="" class="active">留言</a></li>
@@ -51,15 +168,32 @@
 		<div class="container">
 			<div class="row w_main_row">
 				<ol class="breadcrumb w_breadcrumb">
-				  <li><a href="#">首页</a></li>
-				  <li class="active">评论</li>
+				  <li><a href="/index.html">首页</a></li>
+				  <li class="active">留言</li>
 				  <span class="w_navbar_tip">你，生命中最重要的过客，之所以是过客，因为你未曾为我停留。</span>
 				</ol>
 				
 				<div class="col-lg-9 col-md-9 w_main_left">
-					
-					
-					
+
+
+					<div class="wrap-leaveword">
+						<div class="says-leaveword">
+							<h1>亲，终于等到你啦，想对我说的话都可以写在这里哟！</h1>
+							<textarea class="textarea-leaveword">请点击发布试试吧<br>如有问题，欢迎随时联系我QQ：2574691263（同QQ号)</textarea>
+							<span class="max-length"><span class="max-length-change">43</span>/100</span>
+							<input class="input-leaveword" type="button"  value="留 言">
+						</div>
+						<ul class="ul-leaveword">
+
+<!--
+							<li class="li-leaveword" ><span class="span-leavewords">方便地方绑定</span><span class="span-leaveword-timeandusername"><span class="span-leavewordtime">2019年06月20日13:08:14 </span><span class="span-leavewordname">user1</span><a class="a-leaveword" href="javascript:;" title="删除这条信息">删除</a></span></li>
+-->
+
+						</ul>
+					</div>
+
+
+
 					<!--PC版-->
 					<!--<div id="SOHUCS" sid="5eab7e4c363e4cb8bed0efa3604e6b42"></div>
 					<script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js" ></script>
@@ -74,7 +208,7 @@
 						<div class="ds-thread" data-thread-key="5eab7e4c363e4cb8bed0efa3604e6b42" data-title="请替换成文章的标题" data-url="请替换成文章的网址"></div>
 					<!-- 多说评论框 end -->
 					<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-					<script type="text/javascript">
+					<!--<script type="text/javascript">
 					var duoshuoQuery = {short_name:"wfyvv"};
 						(function() {
 							var ds = document.createElement('script');
@@ -84,7 +218,7 @@
 							(document.getElementsByTagName('head')[0] 
 							 || document.getElementsByTagName('body')[0]).appendChild(ds);
 						})();
-						</script>
+						</script>-->
 					<!-- 多说公共JS代码 end -->
 
 					
@@ -113,5 +247,221 @@
 	</div>
 	<!--snow-->
 	<!--<div class="snow-container"></div>-->
+
+
+	<script>
+
+		$(function () {
+			//一进入页面就获取所有留言信息并显示
+			$.get("/leaveword/findAllLeaveWord",function (result) {
+				if(result.status == 200){
+					var leavewordArr = result.data;
+					for(let i in leavewordArr){
+						var leavewordTime = layui.util.toDateString(leavewordArr[i].leavewordTime, 'yyyy-MM-dd HH:mm:ss');
+						$('.ul-leaveword').append('<li class="li-leaveword" >'
+						+'<span class="span-leavewords">'+leavewordArr[i].leaveword+'</span>'
+						+'<span class="span-leaveword-timeandusername">'
+						+'<span class="span-leavewordtime">'+leavewordTime+'</span>'
+						+'<span class="span-leavewordname">'+leavewordArr[i].userName+'</span>'
+						+'<a class="a-leaveword" href="javascript:;" title="删除这条信息" leavewordid="'+leavewordArr[i].leavewordId+'">'+"删除"+'</a>'
+						+'</span></li>')
+					}
+				}
+			});
+
+	/*		console.log("%%%:"+$('.span-leaveword-timeandusername').text());*/
+
+			/*
+			* onpropertychange(jquery中是propertychange)： IE下，当一个HTML元素的属性改变的时候，都能通过 onpropertychange来即时捕获。
+			*oninput(jquery中是input)：是onpropertychange的非IE浏览器版本，支持firefox和opera等浏览器，但有一点不同，
+			* 						  它绑定于对象时，并非该对象所有属性改变都能触发事件，它只在对象value值发生改变时奏效。
+			* */
+			$(".textarea-leaveword").bind("input propertychange",function(event){ //jQuery实时监听留言textarea输入框值变化
+				var leavewordLen = ($(".textarea-leaveword").val()).length;
+				$(".max-length-change").text(leavewordLen);
+				if(leavewordLen <= 100){  //博客文章标题不能超过50字
+					$(".max-length-change").css({"color":"#32CD32"});
+				}
+				else if(leavewordLen > 100){
+					$(".max-length-change").css({"color":"#EE2C2C"});
+					layer.msg("最大字数不得超过100字！",{time : 2*1000});
+				}
+
+			});
+
+			//点击了“留言”按钮后做判断和处理
+			$('.input-leaveword').click(function () {
+				/*console.log($('.textarea-leaveword').val());
+				console.log($('.textarea-leaveword').val().length);*/
+
+				var leavewordlength = $('.textarea-leaveword').val().length;
+				if(leavewordlength <=0){
+					layer.alert('留言内容不能为空哟!', {
+						icon: 7,
+						title: "提示"
+					});
+				}else{
+					$.ajax({
+						type : "GET",
+						url : "/user/getLoginUserSession",
+						data :{},
+						dataType : "json",
+						success : function (result) {   //先验证用户是否登录，没有登录强制跳转登录页面
+							if(result.status == 200){
+								var username = null;
+								var adminname = null;
+								if(result.data.userObject!=null){   //判断session中的userObject对象是否为空，先判断防止报空指针异常
+									username = result.data.userObject.userName;
+								}
+								if(result.data.adminObject!=null){  //同上注释
+									adminname = result.data.adminObject.adminName;
+								}
+								/*var username = result.data.userObject.userName;
+								var adminname = result.data.adminObject.adminName;*/
+								var leaveword = $('.textarea-leaveword').val();
+								if((username==null)||(adminname!=null)){
+									layer.alert('博主不能给自己留言！', {
+										icon: 5,
+										title: "提示"
+									});
+								}else{
+									$.post("/leaveword/insertOneLeaveWord",
+											{"userName":username,"leaveword":leaveword},
+											function (result) {
+												if(result.status == 200){
+													layer.msg("留言成功!",{time : 2*1000});
+
+													$('.ul-leaveword').empty(); //刷新留言前先清空以前的内容
+													$.get("/leaveword/findAllLeaveWord",function (result) {
+														if(result.status == 200){
+															var leavewordArr = result.data;
+															for(let i in leavewordArr){
+																var leavewordTime = layui.util.toDateString(leavewordArr[i].leavewordTime, 'yyyy-MM-dd HH:mm:ss');
+																$('.ul-leaveword').append('<li class="li-leaveword" >'
+																		+'<span class="span-leavewords">'+leavewordArr[i].leaveword+'</span>'
+																		+'<span class="span-leaveword-timeandusername">'
+																		+'<span class="span-leavewordtime">'+leavewordTime+'</span>'
+																		+'<span class="span-leavewordname">'+leavewordArr[i].userName+'</span>'
+																		+'<a class="a-leaveword" href="javascript:;" title="删除这条信息" leavewordid="'+leavewordArr[i].leavewordId+'">'+"删除"+'</a>'
+																		+'</span></li>')
+															}
+														}
+													});
+
+												}else{
+													layer.msg("留言失败!",{time : 2*1000});
+												}
+											});
+								}
+
+							}
+							if(result.status==500){
+								layer.alert('您还未登录，请先登录!', {
+									icon: 2,
+									title: "提示"
+								});
+								window.location.href = '/login.html';  // ajax控制跳转页面
+							}
+						},
+						fail : function () {
+							console.log("失败");
+						},
+						error : function () {
+							console.log("错误");
+						}
+
+					});
+				}
+
+			});
+
+			//删除留言处理  //为解决jquery动态生成节点造成节点点击事件失效，这里我们采用js的事件委托机制处理
+			$(document).on("click",".a-leaveword",function () {
+
+				var leavewordid = $(this).attr("leavewordid");
+				$.ajax({
+					type : "GET",
+					url : "/user/getLoginUserSession",
+					data :{},
+					dataType : "json",
+					success : function (result){
+						if(result.status == 200) {
+							/*"undefined" == typeof(modelType);*/
+							var username = null;
+							var adminname = null;
+							if(result.data.userObject!=null){  //判断session中的userObject对象是否为空，先判断防止报空指针异常
+								username = result.data.userObject.userName;
+							}
+							if(result.data.adminObject!=null){  //同上注释
+								adminname = result.data.adminObject.adminName;
+							}
+
+						/*	var username = result.data.userObject.userName;
+							var adminname = result.data.adminObject.adminName;*/
+							var leaveword = $('.textarea-leaveword').val();
+							if ((username != null) || (adminname == null)) { //判断登录这身份，禁止用户删留言
+								layer.alert('用户没有权限删除留言！', {
+									icon: 5,
+									title: "提示"
+								});
+							}else{
+								$.post("/leaveword/deleteOneLeaveWordById",
+										{"leavewordId":leavewordid}, function (result) {
+
+											if(result.status == 200){
+												layer.msg("留言删除成功!",{time : 2*800});
+												$('.ul-leaveword').empty(); //刷新留言前先清空以前的内容
+												//删除留言后重新加载所有留言
+												$.get("/leaveword/findAllLeaveWord",function (result) {
+													if(result.status == 200){
+														var leavewordArr = result.data;
+														for(let i in leavewordArr){
+															var leavewordTime = layui.util.toDateString(leavewordArr[i].leavewordTime, 'yyyy-MM-dd HH:mm:ss');
+															$('.ul-leaveword').append('<li class="li-leaveword" >'
+																	+'<span class="span-leavewords">'+leavewordArr[i].leaveword+'</span>'
+																	+'<span class="span-leaveword-timeandusername">'
+																	+'<span class="span-leavewordtime">'+leavewordTime+'</span>'
+																	+'<span class="span-leavewordname">'+leavewordArr[i].userName+'</span>'
+																	+'<a class="a-leaveword" href="javascript:;" title="删除这条信息" leavewordid="'+leavewordArr[i].leavewordId+'">'+"删除"+'</a>'
+																	+'</span></li>')
+														}
+													}
+												});
+
+											}else{
+												layer.msg("留言删除失败!",{time : 2*800});
+											}
+
+										});
+							}
+						}else{
+							layer.alert('游客没有权限删除留言！', {
+								icon: 2,
+								title: "提示"
+							});
+						}
+
+					},
+					fail : function () {
+						console.log("失败");
+					},
+					error : function () {
+						console.log("错误");
+					}
+				});
+
+
+
+
+
+			});
+			
+			
+
+
+		});
+
+	</script>
+
 </body>
 </html>

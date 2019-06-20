@@ -1,6 +1,7 @@
 package cn.cggeeker.mapper;
 
 import cn.cggeeker.pojo.Admin;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -15,5 +16,8 @@ import java.util.List;
 public interface AdminMapper {
 
     public List<Admin> findAllAdmin();  //查找所有管理员(博主)信息
+
+    //管理员登录验证
+    public Admin adminLoginValidate(@Param("adminName")String adminName,@Param("passWord")String passWord);
 
 }

@@ -13,4 +13,7 @@ import java.util.List;
 public interface AdminService {
 
     public List<Admin> findAllAdmin();
+
+    public Admin adminLoginValidate(String adminName,String passWord);
+
 }

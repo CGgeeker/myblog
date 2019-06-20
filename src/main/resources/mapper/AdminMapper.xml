@@ -17,4 +17,10 @@
         from admin_tb
     </select>
 
+    <select id="adminLoginValidate" parameterType="java.lang.String" resultType="Admin">
+        select <include refid="Base_Column_List"/>
+        from admin_tb
+        where adminname = #{adminName,jdbcType=VARCHAR} and password = #{passWord,jdbcType=VARCHAR}
+    </select>
+
 </mapper>

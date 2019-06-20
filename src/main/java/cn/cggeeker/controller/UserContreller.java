@@ -1,7 +1,9 @@
 package cn.cggeeker.controller;
 
+import cn.cggeeker.pojo.Admin;
 import cn.cggeeker.pojo.InviteCode;
 import cn.cggeeker.pojo.User;
+import cn.cggeeker.service.AdminService;
 import cn.cggeeker.service.UserService;
 import cn.cggeeker.util.CurrentTime;
 import cn.cggeeker.util.ResultJson;
@@ -17,6 +19,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @Auther:CG
@@ -31,13 +35,17 @@ public class UserContreller {  // 用户控制器
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private AdminService adminService;
+
 
     @GetMapping("/userLoginValidate")  //用户登录验证
     @ResponseBody
     public ResultJson userLoginValidate(String userName,String passWord,HttpServletRequest request,HttpServletResponse response){
         ResultJson resultJson = new ResultJson();
         User user = userService.userLoginValidate(userName,passWord);
-        if(user!=null){
+        Admin admin = adminService.adminLoginValidate(userName,passWord);
+        if(user!=null){  //用户登录成功
             resultJson.setStatus(200);
             resultJson.setMessage("登录成功！");
             resultJson.setData(user);
@@ -46,7 +54,20 @@ public class UserContreller {  // 用户控制器
             int loginid = user.getUserId();
             request.getSession().setAttribute("userObject",user);
 
-        }else {
+            request.getSession().setAttribute("adminObject",admin);
+
+        }else if(admin!=null){  //管理员登录成功
+            resultJson.setStatus(201);
+            resultJson.setMessage("登录成功！");
+            resultJson.setData(admin);
+            //登录成功后将用户名和userid存入session中
+            String loginname = admin.getAdminName();
+            int loginid = admin.getAdminId();
+            request.getSession().setAttribute("adminObject",admin);
+
+            request.getSession().setAttribute("userObject",user);
+
+        } else {
             resultJson.setStatus(500);
             resultJson.setMessage("用户名或密码错误！");
         }
@@ -109,15 +130,20 @@ public class UserContreller {  // 用户控制器
     }
 
     @GetMapping("/getLoginUserSession")
-    @ResponseBody                       //获取已经登录（或者称之为在线）的用户信息
+    @ResponseBody                       //获取已经登录（或者称之为在线）的用户（管理员）信息
     public ResultJson getLoginUserSession(HttpServletRequest request , HttpServletResponse response){
         ResultJson resultJson = new ResultJson();
+        Map<String,Object> map = new HashMap<>();
         User user = (User)request.getSession().getAttribute("userObject");
-        log.debug(":::::::::::::::::::Session::::::::::::::" + user);
-        if(user!=null){
+        Admin admin = (Admin)request.getSession().getAttribute("adminObject");
+        log.debug(":::::::::::::::::::Session--user::::::::::::::" + user);
+        log.debug(":::::::::::::::::::Session--admin::::::::::::::" + admin);
+        if((user!=null)||(admin!=null)){
+            map.put("userObject",user);
+            map.put("adminObject",admin);
             resultJson.setStatus(200);
             resultJson.setMessage("成功获取当前用户的session信息！");
-            resultJson.setData(user);
+            resultJson.setData(map);
         }
         else{
             resultJson.setStatus(500);
