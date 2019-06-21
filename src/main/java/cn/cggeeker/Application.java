@@ -6,6 +6,7 @@ import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -21,6 +22,7 @@ import java.util.List;
  * @version:1.0
  */
 @SpringBootApplication
+@ServletComponentScan   //启动类加@ServletComponentScan注解，这样才能在程序启动时将对应的bean加载进来
 @MapperScan("cn.cggeeker.mapper") //扫描mybatis接口并交由spring管理
 public class Application {
     public static void main(String[] args) {
