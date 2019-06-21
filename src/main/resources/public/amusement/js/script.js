@@ -22,12 +22,108 @@ mp3: '/amusement/mp3/The Dawn.mp3',
 ogg: ''
 },
 {
-title: 'chenparty dj.mp3',
+title: 'chenparty dj',
 artist: '德国童声',
 album: 'chenparty 超好听的德国童声 dj.mp3',
 cover: '/amusement/img/3.jpg',
 mp3: '/amusement/mp3/chenparty dj.mp3',
 ogg: ''
+},
+{
+	title: '追梦赤子心',
+	artist: 'GALA',
+	album: 'GALA - 追梦赤子心.mp3',
+	cover: '/amusement/img/4.jpg',
+	mp3: '/amusement/mp3/GALA - 追梦赤子心.mp3',
+	ogg: ''
+},
+{
+	title: 'With An Orchid',
+	artist: 'Yanni',
+	album: 'Yanni - With An Orchid.mp3',
+	cover: '/amusement/img/5.jpg',
+	mp3: '/amusement/mp3/Yanni - With An Orchid.mp3',
+	ogg: ''
+},
+{
+	title: '卡尔加里路',
+	artist: '丢火车乐队',
+	album: '丢火车乐队 - 卡尔加里路.mp3',
+	cover: '/amusement/img/6.jpg',
+	mp3: '/amusement/mp3/丢火车乐队 - 卡尔加里路.mp3',
+	ogg: ''
+},
+{
+	title: '星月神话',
+	artist: '董敏',
+	album: '董敏 - 星月神话 (笛子version).mp3',
+	cover: '/amusement/img/7.jpg',
+	mp3: '/amusement/mp3/董敏 - 星月神话 (笛子version).mp3',
+	ogg: ''
+},
+{
+	title: '风吹麦浪 (Live)',
+	artist: '李健 _ 孙俪',
+	album: '李健 _ 孙俪 - 风吹麦浪 (Live).mp3',
+	cover: '/amusement/img/8.jpg',
+	mp3: '/amusement/mp3/李健 _ 孙俪 - 风吹麦浪 (Live).mp3',
+	ogg: ''
+},
+{
+	title: '骄傲的少年',
+	artist: '南征北战NZBZ',
+	album: '南征北战NZBZ - 骄傲的少年.mp3',
+	cover: '/amusement/img/9.jpg',
+	mp3: '/amusement/mp3/南征北战NZBZ - 骄傲的少年.mp3',
+	ogg: ''
+},
+{
+	title: '爱的就是你',
+	artist: '甜酱',
+	album: '甜酱 - 爱的就是你.mp3',
+	cover: '/amusement/img/10.jpg',
+	mp3: '/amusement/mp3/甜酱 - 爱的就是你.mp3',
+	ogg: ''
+},
+{
+	title: '此时此刻',
+	artist: '许巍',
+	album: '许巍 - 此时此刻.mp3',
+	cover: '/amusement/img/11.jpg',
+	mp3: '/amusement/mp3/许巍 - 此时此刻.mp3',
+	ogg: ''
+},
+{
+	title: '第三极',
+	artist: '许巍',
+	album: '许巍 - 第三极.mp3',
+	cover: '/amusement/img/12.jpg',
+	mp3: '/amusement/mp3/许巍 - 第三极.mp3',
+	ogg: ''
+},
+{
+	title: '生活不止眼前的苟且',
+	artist: '许巍',
+	album: '许巍 - 生活不止眼前的苟且.mp3',
+	cover: '/amusement/img/13.jpg',
+	mp3: '/amusement/mp3/许巍 - 生活不止眼前的苟且.mp3',
+	ogg: ''
+},
+{
+	title: '蓝色土耳其',
+	artist: '周传雄',
+	album: '周传雄 - 蓝色土耳其.mp3',
+	cover: '/amusement/img/14.jpg',
+	mp3: '/amusement/mp3/周传雄 - 蓝色土耳其.mp3',
+	ogg: ''
+},
+{
+	title: '青花',
+	artist: '周传雄',
+	album: '周传雄 - 青花.mp3',
+	cover: '/amusement/img/15.jpg',
+	mp3: '/amusement/mp3/周传雄 - 青花.mp3',
+	ogg: ''
 },];
 
 	// Load playlist
