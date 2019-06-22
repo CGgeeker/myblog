@@ -153,6 +153,15 @@
                 }
             ]
         };
+        setTimeout(function () {
+            var onlineNum = 0;
+            $.get("/online/getOnlineCount",function (result) {
+                onlineNum = result;
+                option0.series[0].data[0].value = (onlineNum).toFixed(2) - 0;
+                myChart0.setOption(option0, true);
+            });
+
+        },500);
 
         setInterval(function () {
             var onlineNum = 0;
