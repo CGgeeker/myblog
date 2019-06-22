@@ -19,7 +19,7 @@ spring:
       load-on-startup: 1             #为 1 表示Tomcat一启动就加载spring配置文件
 
   redis:             #配置数据源redis
-    host: 132.232.192.160
+    host: 127.0.0.1
     password: CGgeeker2020.
     port: 6379
     timeout: 1000
@@ -35,7 +35,7 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/myblog?characterEncoding=utf-8&serverTimezone=GMT%2B8  #最新的jdbc驱动需要设置时区，否则报错！
     username: root
-    password: root
+    password: CGgeeker2020.
     type: com.alibaba.druid.pool.DruidDataSource
     initialSize: 5
     minIdle: 5
@@ -62,8 +62,8 @@ spring:
 
 logging:
   level:
-    cn.cggeeker: debug  #设置开发时,日志级别为debug,当完项后改为info,一般用info方便记录打印的日志
-  path: "D:/MyBlogLogFile/log"
+    cn.cggeeker: info  #设置开发时,日志级别为debug,当完项后改为info,一般用info方便记录打印的日志
+  #path: "D:/MyBlogLogFile/log"
 
 mybatis:
   mapper-locations: classpath:mapper/*Mapper.xml  #mybatis的xml文件映射配置

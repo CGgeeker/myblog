@@ -7,6 +7,9 @@
     <groupId>cn.cggeeker</groupId>
     <artifactId>myblog</artifactId>
     <version>1.0.0</version>
+    <name>myblog</name>   		 <!--打出来的包的名字 hello-0.0.1-SNAPSHOT.jar-->
+    <description>This is myblog project</description>
+    <packaging>jar</packaging>  		  <!--打包方式jar/war-->
 
 
     <!--springboot父工程-->
@@ -107,5 +110,14 @@
 
     </dependencies>
 
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
