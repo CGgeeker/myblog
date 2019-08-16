@@ -66,7 +66,7 @@ logging:
   #path: "D:/MyBlogLogFile/log"
 
 mybatis:
-  mapper-locations: classpath:mapper/*Mapper.xml  #mybatis的xml文件映射配置
+  mapper-locations: classpath:mapper/*Mapper.xml  #mybatis的xml文件映射配置!!!!!!!!!!!!!
   type-aliases-package: cn.cggeeker.pojo #为了避免xml文件中全限定名带来的繁琐写法，这里为pojo类路径配置别名
   configuration:
     map-underscore-to-camel-case: true #true：开启驼峰命名识别，false:不开启
