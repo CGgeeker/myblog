@@ -9,7 +9,8 @@
     <version>1.0.0</version>
     <name>myblog</name>   		 <!--打出来的包的名字 hello-0.0.1-SNAPSHOT.jar-->
     <description>This is myblog project</description>
-    <packaging>jar</packaging>  		  <!--打包方式jar/war-->
+    <!--<packaging>jar</packaging>  	-->	  <!--打包方式jar/war-->
+    <packaging>war</packaging>
 
 
     <!--springboot父工程-->
@@ -24,6 +25,29 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <!-- 不依赖内嵌tomcat -->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- 排除springboot内置tomcat容器的SpringBootServletInitializer接口需要依赖 javax.servlet -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- 本地调试集成tomcat -->
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-servlet-api</artifactId>
+            <version>8.0.36</version>
+            <scope>provided</scope>
         </dependency>
 
 

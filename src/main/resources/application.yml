@@ -6,6 +6,7 @@ server:
   servlet:                             #springboot2设置session过期时长的方式
     session:
       timeout: 1680   #设置session存活时长为28min(28 * 60 = 1680 s)
+    context-path: /myblog  #则将war包修改为myblog.war
 
 
 spring:
