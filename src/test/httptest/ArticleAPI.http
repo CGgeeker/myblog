@@ -1,0 +1,18 @@
+GET http://127.0.0.1:8080/article/insertOneArticle?DESK_NAME=1号小桌&DESK_STATUS=繁忙
+
+###
+
+
+POST http://localhost:8080/article/insertOneArticle
+Content-Type: application/json
+
+{
+  "title": "测试文章标题666",
+  "content": "测试文章内容",
+  "author": "CG",
+  "readingNum": 666,
+  "publishTime": "2019-06-22 13:22:32",
+  "articleImg": "/img/brain.jpg"
+}
+
+###
